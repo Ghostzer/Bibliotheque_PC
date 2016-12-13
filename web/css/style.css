@@ -1,0 +1,79 @@
+body {
+    font-family:Sans-serif;
+    font-size:100%;
+    background:#DDDDDD;
+    margin:0;
+    background-image: url(../imgs/mairie_.png);
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+
+
+#header {
+    background-color: #46423D;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    font-size: 12px;
+}
+
+ul {
+    list-style: none; 
+    margin: 0;
+
+}
+
+ul li {
+    display: table-cell;
+    padding: 10px;
+}
+
+
+nav {
+
+}
+
+a:link {
+    text-decoration: none;
+}
+
+li a {
+    color: #FFBC10;
+}
+
+a:hover {
+    color:#fff;
+}
+
+#content {
+    max-width: 70%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+#main {
+    float: right;
+    width: 70%;
+    background-color: #fff;
+
+
+}
+
+#aside {
+    float: left;
+    width: 30%;
+    background-color: #EDEEEF;
+
+}
+
+#footer {
+    background-color: #46423D;
+    height: 5em;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
