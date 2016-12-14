@@ -1,10 +1,6 @@
 mpc_platform_homepage:
     path:     /
     defaults: { _controller: mpcPlatformBundle:Default:index }
-
-admin_zone:
-    path:    /admin
-    defaults: { _controller: mpcPlatformBundle:Default:admin }
     
 filter_bd:
     path:    /bd
