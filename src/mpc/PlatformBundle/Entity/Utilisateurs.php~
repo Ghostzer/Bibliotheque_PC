@@ -15,14 +15,14 @@ class Utilisateurs
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=250, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=250, nullable=false)
+     * @ORM\Column(name="prenom", type="string", length=250, nullable=true)
      */
     private $prenom;
 
@@ -36,16 +36,6 @@ class Utilisateurs
     private $id;
 
     /**
-     * @var \mpc\PlatformBundle\Entity\Reservation
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Reservation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
-     * })
-     */
-    private $reservation;
-
-    /**
      * @var \mpc\PlatformBundle\Entity\Emprunt
      *
      * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Emprunt")
@@ -54,6 +44,16 @@ class Utilisateurs
      * })
      */
     private $emprunt;
+
+    /**
+     * @var \mpc\PlatformBundle\Entity\Reservation
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Reservation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
+     * })
+     */
+    private $reservation;
 
 
 }

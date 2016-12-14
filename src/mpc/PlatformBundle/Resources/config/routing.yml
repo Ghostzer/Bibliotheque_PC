@@ -1,3 +1,19 @@
 mpc_platform_homepage:
     path:     /
     defaults: { _controller: mpcPlatformBundle:Default:index }
+
+admin_zone:
+    path:    /admin
+    defaults: { _controller: mpcPlatformBundle:Default:admin }
+    
+filter_bd:
+    path:    /bd
+    defaults: { _controller: mpcPlatformBundle:Default:trieBd }
+    
+filter_livre:
+    path:    /livre
+    defaults: { _controller: mpcPlatformBundle:Default:trieLivre }
+    
+filter_cd:
+    path:    /cd
+    defaults: { _controller: mpcPlatformBundle:Default:trieCd }

@@ -43,16 +43,6 @@ class Ouvrage
     private $id;
 
     /**
-     * @var \mpc\PlatformBundle\Entity\Auteurs
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Auteurs")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
-     * })
-     */
-    private $auteur;
-
-    /**
      * @var \mpc\PlatformBundle\Entity\Genre
      *
      * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Genre")
@@ -61,6 +51,16 @@ class Ouvrage
      * })
      */
     private $genre;
+
+    /**
+     * @var \mpc\PlatformBundle\Entity\Auteurs
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Auteurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
+     * })
+     */
+    private $auteur;
 
 
 
@@ -147,30 +147,6 @@ class Ouvrage
     }
 
     /**
-     * Set auteur
-     *
-     * @param \mpc\PlatformBundle\Entity\Auteurs $auteur
-     *
-     * @return Ouvrage
-     */
-    public function setAuteur(\mpc\PlatformBundle\Entity\Auteurs $auteur = null)
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    /**
-     * Get auteur
-     *
-     * @return \mpc\PlatformBundle\Entity\Auteurs
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
-
-    /**
      * Set genre
      *
      * @param \mpc\PlatformBundle\Entity\Genre $genre
@@ -192,5 +168,29 @@ class Ouvrage
     public function getGenre()
     {
         return $this->genre;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \mpc\PlatformBundle\Entity\Auteurs $auteur
+     *
+     * @return Ouvrage
+     */
+    public function setAuteur(\mpc\PlatformBundle\Entity\Auteurs $auteur = null)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \mpc\PlatformBundle\Entity\Auteurs
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
     }
 }

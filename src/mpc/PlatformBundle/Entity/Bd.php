@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="bd", indexes={@ORM\Index(name="ouvrage_id", columns={"ouvrage_id"})})
  * @ORM\Entity
  */
-class Bd
-{
+class Bd {
+
     /**
      * @var integer
      *
@@ -31,15 +31,12 @@ class Bd
      */
     private $ouvrage;
 
-
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -50,8 +47,7 @@ class Bd
      *
      * @return Bd
      */
-    public function setOuvrage(\mpc\PlatformBundle\Entity\Ouvrage $ouvrage = null)
-    {
+    public function setOuvrage(\mpc\PlatformBundle\Entity\Ouvrage $ouvrage = null) {
         $this->ouvrage = $ouvrage;
 
         return $this;
@@ -62,8 +58,8 @@ class Bd
      *
      * @return \mpc\PlatformBundle\Entity\Ouvrage
      */
-    public function getOuvrage()
-    {
+    public function getOuvrage() {
         return $this->ouvrage;
     }
+
 }

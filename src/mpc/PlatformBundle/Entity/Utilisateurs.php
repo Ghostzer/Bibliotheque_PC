@@ -16,14 +16,14 @@ class Utilisateurs extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=250, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=250, nullable=false)
+     * @ORM\Column(name="prenom", type="string", length=250, nullable=true)
      */
     private $prenom;
 
@@ -43,16 +43,6 @@ class Utilisateurs extends BaseUser
     }
 
     /**
-     * @var \mpc\PlatformBundle\Entity\Reservation
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Reservation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
-     * })
-     */
-    private $reservation;
-
-    /**
      * @var \mpc\PlatformBundle\Entity\Emprunt
      *
      * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Emprunt")
@@ -61,6 +51,16 @@ class Utilisateurs extends BaseUser
      * })
      */
     private $emprunt;
+
+    /**
+     * @var \mpc\PlatformBundle\Entity\Reservation
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Reservation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
+     * })
+     */
+    private $reservation;
 
 
 
@@ -123,30 +123,6 @@ class Utilisateurs extends BaseUser
     }
 
     /**
-     * Set reservation
-     *
-     * @param \mpc\PlatformBundle\Entity\Reservation $reservation
-     *
-     * @return Utilisateurs
-     */
-    public function setReservation(\mpc\PlatformBundle\Entity\Reservation $reservation = null)
-    {
-        $this->reservation = $reservation;
-
-        return $this;
-    }
-
-    /**
-     * Get reservation
-     *
-     * @return \mpc\PlatformBundle\Entity\Reservation
-     */
-    public function getReservation()
-    {
-        return $this->reservation;
-    }
-
-    /**
      * Set emprunt
      *
      * @param \mpc\PlatformBundle\Entity\Emprunt $emprunt
@@ -168,5 +144,29 @@ class Utilisateurs extends BaseUser
     public function getEmprunt()
     {
         return $this->emprunt;
+    }
+
+    /**
+     * Set reservation
+     *
+     * @param \mpc\PlatformBundle\Entity\Reservation $reservation
+     *
+     * @return Utilisateurs
+     */
+    public function setReservation(\mpc\PlatformBundle\Entity\Reservation $reservation = null)
+    {
+        $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Get reservation
+     *
+     * @return \mpc\PlatformBundle\Entity\Reservation
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
     }
 }

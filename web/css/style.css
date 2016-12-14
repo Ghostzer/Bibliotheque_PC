@@ -23,7 +23,7 @@ ul {
 
 }
 
-ul li {
+.ma_ul li {
     display: table-cell;
     padding: 10px;
 }
@@ -76,4 +76,8 @@ a:hover {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.add {
+    font-size: 10px;
 }

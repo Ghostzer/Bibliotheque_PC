@@ -19,7 +19,7 @@
         <nav id="login">
             <ul class="ma_ul">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li><a href="{{ path('fos_user_security_logout') }}"><span></span> Se déconnecter</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
                     {% else %}
                     <li><a href="register"></span> S'inscrire</a></li>
                     <li><a href="#"><span></span> Se connecter<span></span>
@@ -41,23 +41,20 @@
 
     <div id="content">
         <div id="main">
-            <h4>Les derniers ouvrages ajoutés : </h4>
-            <span>Tous | <span><a href="{{ path('filter_bd') }}">BDs</a></span><span> | <a href="{{ path('filter_livre') }}">Livres</a></span><span> | <a href="{{ path('filter_cd') }}">CDs</a></span>
-                {% for ouvrage in ouvrages %}
-                    <ul>
-                        <li><i>{{ ouvrage.titre }}</i> {% if ouvrage.date %} <span class="add">ajouté le {{ ouvrage.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">Voir</a></li>
-                    </ul>
-                {% endfor %}
+            <h4>Les derniers CDs ajoutés : </h4>
+            <span><a href="{{ path('mpc_platform_homepage') }}">Tous | </a></span><span><a href="{{ path('filter_bd') }}">BDs</a></span><span> | <a href="{{ path('filter_livre') }}">Livres</a></span><span> | CDs</span>
+            {% for ouvrage_select in ouvrages_select %}
+                <ul>
+                    <li><i>{{ ouvrage_select.ouvrage.titre }}</i> {% if ouvrage_select.ouvrage.date %} <span class="add">ajouté le {{ ouvrage_select.ouvrage.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': ouvrage_select.ouvrage.id }) }}">Voir</a></li>
+                </ul>
+            {% endfor %}
         </div>
         <div id="aside">
-            <ul>
-                {% if is_granted("ROLE_ADMIN") %}
-                <li>Voir les réservations</li>
-                {% else %}
-                {% endif %}
-                    <li><a href="#">Vie municipale</a></li>
-                </ul>
-            </div>
-
+            <ol>
+                <li><a href="#"></a></li>
+                <li><a href="#">Vie municipale</a></li>
+            </ol>
         </div>
-        {% endblock %}
+
+    </div>
+{% endblock %}

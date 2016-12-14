@@ -43,16 +43,6 @@ class Ouvrage
     private $id;
 
     /**
-     * @var \mpc\PlatformBundle\Entity\Auteurs
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Auteurs")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
-     * })
-     */
-    private $auteur;
-
-    /**
      * @var \mpc\PlatformBundle\Entity\Genre
      *
      * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Genre")
@@ -61,6 +51,16 @@ class Ouvrage
      * })
      */
     private $genre;
+
+    /**
+     * @var \mpc\PlatformBundle\Entity\Auteurs
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Auteurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
+     * })
+     */
+    private $auteur;
 
 
 }

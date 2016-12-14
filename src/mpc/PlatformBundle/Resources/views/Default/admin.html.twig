@@ -7,7 +7,7 @@
 {% block body %}
     <div id="header">
         <nav id="menu">
-            <ul class="ma_ul">
+            <ul>
                 <li><a href="#">Cadre de vie</a></li>
                 <li><a href="#">Vie municipale</a></li>
                 <li><a href="#">Vie locale et sociale</a></li>
@@ -17,9 +17,9 @@
             </ul>
         </nav>
         <nav id="login">
-            <ul class="ma_ul">
+            <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li><a href="{{ path('fos_user_security_logout') }}"><span></span> Se déconnecter</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
                     {% else %}
                     <li><a href="register"></span> S'inscrire</a></li>
                     <li><a href="#"><span></span> Se connecter<span></span>
@@ -42,22 +42,18 @@
     <div id="content">
         <div id="main">
             <h4>Les derniers ouvrages ajoutés : </h4>
-            <span>Tous | <span><a href="{{ path('filter_bd') }}">BDs</a></span><span> | <a href="{{ path('filter_livre') }}">Livres</a></span><span> | <a href="{{ path('filter_cd') }}">CDs</a></span>
-                {% for ouvrage in ouvrages %}
-                    <ul>
-                        <li><i>{{ ouvrage.titre }}</i> {% if ouvrage.date %} <span class="add">ajouté le {{ ouvrage.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">Voir</a></li>
-                    </ul>
-                {% endfor %}
+            {% for ouvrage in ouvrages %}
+                <ul>
+                    <li>{{ ouvrage.titre }} {% if ouvrage.date %} ajouté le {{ ouvrage.date|date('d/m/Y') }}{% endif %} - <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">Voir</a></li>
+                </ul>
+            {% endfor %}
         </div>
         <div id="aside">
-            <ul>
-                {% if is_granted("ROLE_ADMIN") %}
-                <li>Voir les réservations</li>
-                {% else %}
-                {% endif %}
-                    <li><a href="#">Vie municipale</a></li>
-                </ul>
-            </div>
-
+            <ol>
+                <li><a href="#">Admin zone</a></li>
+                <li><a href="#">Vie municipale</a></li>
+            </ol>
         </div>
-        {% endblock %}
+
+    </div>
+{% endblock %}
