@@ -1,7 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
+{% block stylesheet %}
+{% endblock %}
+
+{% block title %}{{ parent()}} - Show{% endblock %}
 
 {% block body %}
-    <h1>Ouvrage</h1>
+    <h1>{{ ouvrage.titre }}</h1>
 
     <table>
         <tbody>
@@ -14,10 +18,6 @@
                 <td>{{ ouvrage.annee }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{% if ouvrage.date %}{{ ouvrage.date|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
                 <th>Id</th>
                 <td>{{ ouvrage.id }}</td>
             </tr>
@@ -26,15 +26,18 @@
 
     <ul>
         <li>
-            <a href="{{ path('ouvrage_index') }}">Back to the list</a>
+            <a href="/">Retour</a>
         </li>
         <li>
-            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">Edit</a>
         </li>
+        {% if is_granted("ROLE_ADMIN") %}
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Effacer">
             {{ form_end(delete_form) }}
+            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">Edit</a>
         </li>
+        {% else %}
+        {% endif %}
     </ul>
 {% endblock %}
