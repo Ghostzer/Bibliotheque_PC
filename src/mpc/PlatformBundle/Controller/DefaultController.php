@@ -29,8 +29,8 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:filterbd.html.twig', array('ouvrages_select' => $ouvrages_select,
         ));
     }
-    
-        public function trieLivreAction() {
+
+    public function trieLivreAction() {
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository('mpcPlatformBundle:Livre');
@@ -44,15 +44,33 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:filterlivre.html.twig', array('ouvrages_select' => $ouvrages_select,
         ));
     }
-    
-        public function trieCdAction() {
+
+    public function trieCdAction() {
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository('mpcPlatformBundle:Cd');
 
-        $qb = $repo->createQueryBuilder('c') 
+        $qb = $repo->createQueryBuilder('c')
                 ->join('c.ouvrage', 'o')
                 ->where('c.ouvrage = o.id');
+
+        $ouvrages_select = $qb->getQuery()->getResult();
+
+        return $this->render('mpcPlatformBundle:Default:filtercd.html.twig', array('ouvrages_select' => $ouvrages_select,
+        ));
+    }
+    
+    
+
+    public function mesReservationsAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository('mpcPlatformBundle:Reservation');
+
+        $qb = $repo->createQueryBuilder('r')
+                ->join('r.ouvrage', 'o')
+                ->join('')
+                ->where('r.ouvrage = o.id');
 
         $ouvrages_select = $qb->getQuery()->getResult();
 
