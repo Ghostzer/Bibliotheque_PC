@@ -13,3 +13,7 @@ filter_livre:
 filter_cd:
     path:    /cd
     defaults: { _controller: mpcPlatformBundle:Default:trieCd }
+    
+mpc_platform_mesreservations:
+    path:    /mes-reservations
+    defaults: { _controller: mpcPlatformBundle:Default:mesReservations }
