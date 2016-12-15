@@ -3,6 +3,8 @@
 namespace mpc\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use OC\PlatformBundle\Entity\Ouvrage;
 
 class DefaultController extends Controller {
 
@@ -67,10 +69,7 @@ class DefaultController extends Controller {
 
         $repo = $em->getRepository('mpcPlatformBundle:Reservation');
 
-        $qb = $repo->createQueryBuilder('r')
-                ->join('r.ouvrage', 'o')
-                ->join('')
-                ->where('r.ouvrage = o.id');
+
 
         $ouvrages_select = $qb->getQuery()->getResult();
 
