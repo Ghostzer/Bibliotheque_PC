@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Utilisateurs
  *
- * @ORM\Table(name="utilisateurs", indexes={@ORM\Index(name="reservation_id", columns={"reservation_id"}), @ORM\Index(name="emprunt_id", columns={"emprunt_id"})})
+ * @ORM\Table(name="utilisateurs")
  * @ORM\Entity
  */
 class Utilisateurs extends BaseUser
@@ -42,25 +42,6 @@ class Utilisateurs extends BaseUser
         // your own logic
     }
 
-    /**
-     * @var \mpc\PlatformBundle\Entity\Emprunt
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Emprunt")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="emprunt_id", referencedColumnName="id")
-     * })
-     */
-    private $emprunt;
-
-    /**
-     * @var \mpc\PlatformBundle\Entity\Reservation
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Reservation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
-     * })
-     */
-    private $reservation;
 
 
 
@@ -122,51 +103,4 @@ class Utilisateurs extends BaseUser
         return $this->id;
     }
 
-    /**
-     * Set emprunt
-     *
-     * @param \mpc\PlatformBundle\Entity\Emprunt $emprunt
-     *
-     * @return Utilisateurs
-     */
-    public function setEmprunt(\mpc\PlatformBundle\Entity\Emprunt $emprunt = null)
-    {
-        $this->emprunt = $emprunt;
-
-        return $this;
-    }
-
-    /**
-     * Get emprunt
-     *
-     * @return \mpc\PlatformBundle\Entity\Emprunt
-     */
-    public function getEmprunt()
-    {
-        return $this->emprunt;
-    }
-
-    /**
-     * Set reservation
-     *
-     * @param \mpc\PlatformBundle\Entity\Reservation $reservation
-     *
-     * @return Utilisateurs
-     */
-    public function setReservation(\mpc\PlatformBundle\Entity\Reservation $reservation = null)
-    {
-        $this->reservation = $reservation;
-
-        return $this;
-    }
-
-    /**
-     * Get reservation
-     *
-     * @return \mpc\PlatformBundle\Entity\Reservation
-     */
-    public function getReservation()
-    {
-        return $this->reservation;
-    }
 }

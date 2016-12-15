@@ -37,6 +37,17 @@ class Reservation
      * })
      */
     private $ouvrage;
+    
+    
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Utilisateurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * })
+     */
+    private $utilisateur;
 
 
 
@@ -96,5 +107,29 @@ class Reservation
     public function getOuvrage()
     {
         return $this->ouvrage;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \mpc\PlatformBundle\Entity\Utilisateurs $utilisateur
+     *
+     * @return Reservation
+     */
+    public function setUtilisateur(\mpc\PlatformBundle\Entity\Utilisateurs $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \mpc\PlatformBundle\Entity\Utilisateurs
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }

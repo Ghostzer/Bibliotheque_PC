@@ -37,7 +37,75 @@ class Reservation
      * })
      */
     private $ouvrage;
+    
+    
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Utilisateurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * })
+     */
+    private $utilisateur;
 
 
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Reservation
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ouvrage
+     *
+     * @param \mpc\PlatformBundle\Entity\Ouvrage $ouvrage
+     *
+     * @return Reservation
+     */
+    public function setOuvrage(\mpc\PlatformBundle\Entity\Ouvrage $ouvrage = null)
+    {
+        $this->ouvrage = $ouvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get ouvrage
+     *
+     * @return \mpc\PlatformBundle\Entity\Ouvrage
+     */
+    public function getOuvrage()
+    {
+        return $this->ouvrage;
+    }
 }
-

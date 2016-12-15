@@ -44,6 +44,16 @@ class Emprunt
      * })
      */
     private $ouvrage;
+    
+        /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Utilisateurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * })
+     */
+    private $utilisateur;
 
 
 
@@ -127,5 +137,29 @@ class Emprunt
     public function getOuvrage()
     {
         return $this->ouvrage;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \mpc\PlatformBundle\Entity\Utilisateurs $utilisateur
+     *
+     * @return Emprunt
+     */
+    public function setUtilisateur(\mpc\PlatformBundle\Entity\Utilisateurs $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \mpc\PlatformBundle\Entity\Utilisateurs
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }
