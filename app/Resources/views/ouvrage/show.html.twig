@@ -39,5 +39,6 @@
         </li>
         {% else %}
         {% endif %}
+        <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">Réserver</a>
     </ul>
 {% endblock %}
