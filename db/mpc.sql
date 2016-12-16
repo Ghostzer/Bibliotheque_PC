@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 13, 2016 at 04:57 PM
+-- Generation Time: Dec 16, 2016 at 08:03 AM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -56,7 +56,8 @@ CREATE TABLE `bd` (
 --
 
 INSERT INTO `bd` (`id`, `ouvrage_id`) VALUES
-(1, 1);
+(1, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ CREATE TABLE `cd` (
 --
 
 INSERT INTO `cd` (`id`, `ouvrage_id`) VALUES
-(1, 1);
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -86,8 +87,16 @@ CREATE TABLE `emprunt` (
   `id` int(11) NOT NULL,
   `ouvrage_id` int(11) DEFAULT NULL,
   `date_retour` date NOT NULL,
-  `date_emprunt` date NOT NULL
+  `date_emprunt` date NOT NULL,
+  `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `emprunt`
+--
+
+INSERT INTO `emprunt` (`id`, `ouvrage_id`, `date_retour`, `date_emprunt`, `utilisateur_id`) VALUES
+(1, 3, '2016-12-10', '2016-12-08', 5);
 
 -- --------------------------------------------------------
 
@@ -105,7 +114,8 @@ CREATE TABLE `genre` (
 --
 
 INSERT INTO `genre` (`id`, `nom`) VALUES
-(1, 'policier');
+(1, 'policier'),
+(2, 'Fantaisie');
 
 -- --------------------------------------------------------
 
@@ -117,6 +127,13 @@ CREATE TABLE `livre` (
   `id` int(11) NOT NULL,
   `ouvrage_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `livre`
+--
+
+INSERT INTO `livre` (`id`, `ouvrage_id`) VALUES
+(1, 4);
 
 -- --------------------------------------------------------
 
@@ -138,9 +155,10 @@ CREATE TABLE `ouvrage` (
 --
 
 INSERT INTO `ouvrage` (`id`, `titre`, `auteur_id`, `genre_id`, `annee`, `date`) VALUES
-(1, 'asterix', 1, 1, 1999, '2016-12-01'),
-(2, 'titeuf', 2, 1, 2002, '2016-11-09'),
-(3, 'ride the lightning', 1, 1, 1984, '2016-10-25');
+(1, 'Asterix Chez Les Bretons', 1, 1, 1999, '2016-12-01'),
+(2, 'Titeuf - C\'est pô juste !', 2, 1, 2002, '2016-11-09'),
+(3, 'Metallica - Ride The Lightning', 1, 1, 1984, '2016-10-25'),
+(4, 'Le seigneurs des anneaux', 2, 1, 1981, '2016-12-14');
 
 -- --------------------------------------------------------
 
@@ -151,16 +169,17 @@ INSERT INTO `ouvrage` (`id`, `titre`, `auteur_id`, `genre_id`, `annee`, `date`) 
 CREATE TABLE `reservation` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `ouvrage_id` int(11) DEFAULT NULL
+  `ouvrage_id` int(11) DEFAULT NULL,
+  `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `date`, `ouvrage_id`) VALUES
-(1, '2016-12-13', 2),
-(2, '2016-12-14', 3);
+INSERT INTO `reservation` (`id`, `date`, `ouvrage_id`, `utilisateur_id`) VALUES
+(1, '2016-12-13', 2, 2),
+(2, '2016-12-14', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -172,8 +191,6 @@ CREATE TABLE `utilisateurs` (
   `id` int(11) NOT NULL,
   `nom` varchar(250) DEFAULT NULL,
   `prenom` varchar(250) DEFAULT NULL,
-  `emprunt_id` int(11) DEFAULT NULL,
-  `reservation_id` int(11) DEFAULT NULL,
   `username` varchar(180) NOT NULL,
   `username_canonical` varchar(180) NOT NULL,
   `email` varchar(180) NOT NULL,
@@ -191,8 +208,11 @@ CREATE TABLE `utilisateurs` (
 -- Dumping data for table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `emprunt_id`, `reservation_id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, NULL, NULL, NULL, NULL, 'test', 'test', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$.z.h.BBMzoiP9JGyL0vF8.QtEKO1Iv12ZKsYqMz.CU44Uqu/oWrUi', '2016-12-13 11:28:41', NULL, NULL, 'a:0:{}');
+INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
+(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-15 14:41:17', NULL, NULL, 'a:0:{}'),
+(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-15 16:21:56', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
+(4, NULL, NULL, 'azerty', 'azerty', 'hello@hello.hello', 'hello@hello.hello', 1, NULL, '$2y$13$2GcKXm0RwGMkCXcEmnA5Ses8iutDz8k4A3WDJsbBrGx4VguMHgeei', '2016-12-15 09:36:00', NULL, NULL, 'a:0:{}'),
+(5, NULL, NULL, 'aaa', 'aaa', 'a@a.a', 'a@a.a', 1, NULL, '$2y$13$vVI6EI9vmxPGjwbPXnIq.e56FrjStuuVR166y2TKKyLkHb9bvW8eK', '2016-12-15 09:43:56', NULL, NULL, 'a:0:{}');
 
 --
 -- Indexes for dumped tables
@@ -223,7 +243,8 @@ ALTER TABLE `cd`
 --
 ALTER TABLE `emprunt`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `ouvrage_id` (`ouvrage_id`);
+  ADD KEY `ouvrage_id` (`ouvrage_id`),
+  ADD KEY `IDX_364071D7FB88E14F` (`utilisateur_id`);
 
 --
 -- Indexes for table `genre`
@@ -251,7 +272,8 @@ ALTER TABLE `ouvrage`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `ouvrage_id` (`ouvrage_id`);
+  ADD KEY `ouvrage_id` (`ouvrage_id`),
+  ADD KEY `IDX_42C84955FB88E14F` (`utilisateur_id`);
 
 --
 -- Indexes for table `utilisateurs`
@@ -260,9 +282,7 @@ ALTER TABLE `utilisateurs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UNIQ_497B315E92FC23A8` (`username_canonical`),
   ADD UNIQUE KEY `UNIQ_497B315EA0D96FBF` (`email_canonical`),
-  ADD UNIQUE KEY `UNIQ_497B315EC05FB297` (`confirmation_token`),
-  ADD KEY `reservation_id` (`reservation_id`),
-  ADD KEY `emprunt_id` (`emprunt_id`);
+  ADD UNIQUE KEY `UNIQ_497B315EC05FB297` (`confirmation_token`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -272,37 +292,37 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT for table `auteurs`
 --
 ALTER TABLE `auteurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `bd`
 --
 ALTER TABLE `bd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cd`
 --
 ALTER TABLE `cd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `livre`
 --
 ALTER TABLE `livre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `ouvrage`
 --
 ALTER TABLE `ouvrage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `reservation`
 --
@@ -312,7 +332,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
@@ -321,19 +341,20 @@ ALTER TABLE `utilisateurs`
 -- Constraints for table `bd`
 --
 ALTER TABLE `bd`
-  ADD CONSTRAINT `bd_ibfk_1` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_5CCDBE9B15D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`);
 
 --
 -- Constraints for table `cd`
 --
 ALTER TABLE `cd`
-  ADD CONSTRAINT `cd_ibfk_1` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_45D68FDA15D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`);
 
 --
 -- Constraints for table `emprunt`
 --
 ALTER TABLE `emprunt`
-  ADD CONSTRAINT `FK_364071D715D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`);
+  ADD CONSTRAINT `FK_364071D715D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`),
+  ADD CONSTRAINT `FK_364071D7FB88E14F` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`);
 
 --
 -- Constraints for table `livre`
@@ -352,14 +373,8 @@ ALTER TABLE `ouvrage`
 -- Constraints for table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `FK_42C8495515D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`);
-
---
--- Constraints for table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  ADD CONSTRAINT `FK_497B315EAE7FEF94` FOREIGN KEY (`emprunt_id`) REFERENCES `emprunt` (`id`),
-  ADD CONSTRAINT `FK_497B315EB83297E7` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`id`);
+  ADD CONSTRAINT `FK_42C8495515D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`),
+  ADD CONSTRAINT `FK_42C84955FB88E14F` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
