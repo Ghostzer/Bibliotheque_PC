@@ -11,9 +11,9 @@ class DefaultController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'ASC']); //trie par date
-        $livres = $em->getRepository('mpcPlatformBundle:Livre')->findBy([], ['date' => 'ASC']); //trie par date
-        $cds = $em->getRepository('mpcPlatformBundle:Cd')->findBy([], ['date' => 'ASC']); //trie par date
+        $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'DESC']); //trie par date
+        $livres = $em->getRepository('mpcPlatformBundle:Livre')->findBy([], ['date' => 'DESC']); //trie par date
+        $cds = $em->getRepository('mpcPlatformBundle:Cd')->findBy([], ['date' => 'DESC']); //trie par date
         
 
         return $this->render('mpcPlatformBundle:Default:index.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds

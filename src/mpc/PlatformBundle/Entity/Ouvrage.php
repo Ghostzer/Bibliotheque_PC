@@ -27,13 +27,6 @@ class Ouvrage
     private $annee;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="date", nullable=false)
-     */
-    private $date;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -97,30 +90,6 @@ class Ouvrage
     public function getAnnee()
     {
         return $this->annee;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Ouvrage
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**

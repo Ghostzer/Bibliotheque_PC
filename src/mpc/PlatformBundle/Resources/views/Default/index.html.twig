@@ -11,13 +11,13 @@
         <h4>Les livres :</h4>
     <ul>
         {% for livre in livres %}
-            <li><i>{{ livre.ouvrage.titre }}</i> {% if livre.date %} <span class="add">ajouté le {{ livre.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': livre.id }) }}">Voir</a></li>
+            <li><i>{{ livre.auteur }} - {{ livre.ouvrage.titre }}</i> {% if livre.date %} <span class="add">ajouté le {{ livre.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': livre.id }) }}">Voir</a></li>
                 {% endfor %}
     </ul>
                         <h4>Les CDs :</h4>
     <ul>
         {% for cd in cds %}
-            <li><i>{{ cd.ouvrage.titre }}</i> {% if cd.date %} <span class="add">ajouté le {{ cd.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': cd.id }) }}">Voir</a></li>
+            <li><i>{{ cd.artist }} - {{ cd.ouvrage.titre }}</i> {% if cd.date %} <span class="add">ajouté le {{ cd.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': cd.id }) }}">Voir</a></li>
                 {% endfor %}
     </ul>
 {% endblock %}
