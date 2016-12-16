@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ouvrage
  *
- * @ORM\Table(name="ouvrage", indexes={@ORM\Index(name="auteur_id", columns={"auteur_id"}), @ORM\Index(name="genre_id", columns={"genre_id"})})
+ * @ORM\Table(name="ouvrage")
  * @ORM\Entity
  */
 class Ouvrage
@@ -41,27 +41,96 @@ class Ouvrage
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="cover", type="string", length=250, nullable=false)
+     */
+    private $cover;
+
+
 
     /**
-     * @var \mpc\PlatformBundle\Entity\Genre
+     * Set titre
      *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Genre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
-     * })
+     * @param string $titre
+     *
+     * @return Ouvrage
      */
-    private $genre;
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
 
     /**
-     * @var \mpc\PlatformBundle\Entity\Auteurs
+     * Get titre
      *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Auteurs")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
-     * })
+     * @return string
      */
-    private $auteur;
+    public function getTitre()
+    {
+        return $this->titre;
+    }
 
+    /**
+     * Set annee
+     *
+     * @param integer $annee
+     *
+     * @return Ouvrage
+     */
+    public function setAnnee($annee)
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * Get annee
+     *
+     * @return integer
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Ouvrage
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 }
-

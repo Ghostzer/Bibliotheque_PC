@@ -1,11 +1,23 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<h4>Les derniers ouvrages ajoutés : </h4>
-            <span>Tous | <span><a href="{{ path('filter_bd') }}">BDs</a></span><span> | <a href="{{ path('filter_livre') }}">Livres</a></span><span> | <a href="{{ path('filter_cd') }}">CDs</a></span>
-                {% for ouvrage in ouvrages %}
-                    <ul>
-                        <li><i>{{ ouvrage.titre }}</i> {% if ouvrage.date %} <span class="add">ajouté le {{ ouvrage.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">Voir</a></li>
-                    </ul>
+    <h3>Les derniers ouvrages ajoutés : </h3>
+    <h4>Les BDs :</h4>
+    <ul>
+        {% for bd in bds %}
+            <li><i>{{ bd.ouvrage.titre }}</i> {% if bd.date %} <span class="add">ajouté le {{ bd.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': bd.id }) }}">Voir</a></li>
                 {% endfor %}
+    </ul>
+        <h4>Les livres :</h4>
+    <ul>
+        {% for livre in livres %}
+            <li><i>{{ livre.ouvrage.titre }}</i> {% if livre.date %} <span class="add">ajouté le {{ livre.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': livre.id }) }}">Voir</a></li>
+                {% endfor %}
+    </ul>
+                        <h4>Les CDs :</h4>
+    <ul>
+        {% for cd in cds %}
+            <li><i>{{ cd.ouvrage.titre }}</i> {% if cd.date %} <span class="add">ajouté le {{ cd.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': cd.id }) }}">Voir</a></li>
+                {% endfor %}
+    </ul>
 {% endblock %}

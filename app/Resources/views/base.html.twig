@@ -11,17 +11,16 @@
 
             <ul class="topnav" id="navMenu">
                 <li><a href="/">Accueil</a></li>
-                <li><a href="reservations">Réservations</a></li>
+                <li><a href="mes-reservations">Réservations</a></li>
                 <li class="icon">
                     <a href="javascript:void(0);" onclick="functionMenu()">&#9776;</a>
                 </li>
             </ul>
             <ul class="topnav" id="navCompte">
-                <li><a href="profile">Mon compte</a></li>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li><a href="{{ path('fos_user_security_logout') }}"><span></span> Se déconnecter</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span></span>Se déconnecter</a></li>
                             {% else %}
-                    <li><a href="#" id="myBtn"><span></span> Se connecter<span></span>
+                    <li><a href="#" id="myBtn"><span></span>Se connecter<span></span>
                         </a>
                         <div>
                         </div>

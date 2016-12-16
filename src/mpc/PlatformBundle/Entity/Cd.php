@@ -44,6 +44,13 @@ class Cd {
      * @ORM\Column(name="genre", type="string", length=250, nullable=false)
      */
     private $genre;
+    
+        /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
 
     /**
      * Get id
@@ -98,4 +105,52 @@ class Cd {
         return $this->artist;
     }
 
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     *
+     * @return Cd
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Cd
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
 }

@@ -44,6 +44,13 @@ class Livre
      * @ORM\Column(name="genre", type="string", length=250, nullable=false)
      */
     private $genre;
+    
+        /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
 
 
 
@@ -79,5 +86,77 @@ class Livre
     public function getOuvrage()
     {
         return $this->ouvrage;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param string $auteur
+     *
+     * @return Livre
+     */
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return string
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     *
+     * @return Livre
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Livre
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

@@ -44,6 +44,13 @@ class Bd {
      * @ORM\Column(name="genre", type="string", length=250, nullable=false)
      */
     private $genre;
+    
+        /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
 
     /**
      * Get id
@@ -76,4 +83,76 @@ class Bd {
         return $this->ouvrage;
     }
 
+
+    /**
+     * Set auteur
+     *
+     * @param string $auteur
+     *
+     * @return Bd
+     */
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return string
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     *
+     * @return Bd
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Bd
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
 }
