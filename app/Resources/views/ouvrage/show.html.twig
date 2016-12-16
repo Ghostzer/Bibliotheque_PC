@@ -17,13 +17,10 @@
                 <th>Annee</th>
                 <td>{{ ouvrage.annee }}</td>
             </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ ouvrage.id }}</td>
-            </tr>
+            
         </tbody>
     </table>
-<li>{{ ouvrage.date|date('d/m/Y')}}</li>
+<li></li>
     <ul>
         <li>
             <a href="/">Retour</a>
@@ -37,8 +34,12 @@
             {{ form_end(delete_form) }}
             <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">Edit</a>
         </li>
+            <tr>
+                <th>Id</th>
+                <td>{{ ouvrage.id }}</td>
+            </tr>
         {% else %}
         {% endif %}
-        <a href="{{ path('ouvrage_ajoutreservations', { 'id': ouvrage.id }) }}">Réserver</a>
+        <p><a href="{{ path('ouvrage_ajoutreservations', { 'id': ouvrage.id }) }}">Réserver</a></p>
     </ul>
 {% endblock %}

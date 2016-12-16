@@ -2,22 +2,14 @@ mpc_platform_homepage:
     path:     /
     defaults: { _controller: mpcPlatformBundle:Default:index }
     
-filter_bd:
-    path:    /bd
-    defaults: { _controller: mpcPlatformBundle:Default:trieBd }
-    
-filter_livre:
-    path:    /livre
-    defaults: { _controller: mpcPlatformBundle:Default:trieLivre }
-    
-filter_cd:
-    path:    /cd
-    defaults: { _controller: mpcPlatformBundle:Default:trieCd }
-    
 ouvrage_ajoutreservations:
     path:    /ajoutreservation
-    defaults: { _controller: mpcPlatformBundle:Default:mesReservations }
+    defaults: { _controller: mpcPlatformBundle:Default:ajoutReservations }
     
 ouvrage_mesreservations:
     path:    /mes-reservations
+    defaults: { _controller: mpcPlatformBundle:Default:mesReservation }
+    
+ouvrage_listereservations:
+    path:    /liste-reservations
     defaults: { _controller: mpcPlatformBundle:Default:listeReservation }
