@@ -42,12 +42,13 @@
         <ul>
             {% if is_granted("ROLE_ADMIN") %}
                 <li><h4>Administration</h4></li>
-                <li><a href="reservations">Réservations en cours</a></li>
+                <li><a href="/reservation">Réservations en cours</a></li>
+                <li><a href="/emprunt">Emprunts en cours</a></li>
                 {% endif %}
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li><h4>Mon espace</h4></li>
-                <li><a href="profile">Mon profil</a></li>
-                <li><a href="reservations">Voir mes réservations</a></li>
+                <li><a href="/profile">Mon profil</a></li>
+                <li><a href="/reservation">Voir mes réservations</a></li>
                 {% else %}
                 {% endif %}
                 <li><h4>Documents</h4></li>

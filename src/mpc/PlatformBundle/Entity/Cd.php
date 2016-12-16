@@ -30,6 +30,13 @@ class Cd
      * })
      */
     private $ouvrage;
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="artist", type="string", length=250, nullable=false)
+     */
+    private $artist;
 
 
 
@@ -65,5 +72,29 @@ class Cd
     public function getOuvrage()
     {
         return $this->ouvrage;
+    }
+
+    /**
+     * Set artist
+     *
+     * @param string $artist
+     *
+     * @return Cd
+     */
+    public function setArtist($artist)
+    {
+        $this->artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * Get artist
+     *
+     * @return string
+     */
+    public function getArtist()
+    {
+        return $this->artist;
     }
 }

@@ -5,7 +5,7 @@
                 <span><a href="{{ path('mpc_platform_homepage') }}">Tous | </a></span><span>BDs</span><span> | <a href="{{ path('filter_livre') }}">Livres</a></span><span> | <a href="{{ path('filter_cd') }}">CDs</a></span>
                 {% for ouvrage_select in ouvrages_select %}
                     <ul>
-                        <li><i>{{ ouvrage_select.ouvrage.titre }}</i> {% if ouvrage_select.ouvrage.date %} <span class="add">ajouté le {{ ouvrage_select.ouvrage.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': ouvrage_select.ouvrage.id }) }}">Voir</a></li>
+                        <li><i>{{ ouvrage_select.ouvrage.titre }} - {{ ouvrage_select.ouvrage.titre }}</i> {% if ouvrage_select.ouvrage.date %} <span class="add">ajouté le {{ ouvrage_select.ouvrage.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': ouvrage_select.ouvrage.id }) }}">Voir</a></li>
                     </ul>
                 {% endfor %}
 {% endblock %}

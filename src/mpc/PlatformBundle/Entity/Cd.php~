@@ -30,7 +30,47 @@ class Cd
      * })
      */
     private $ouvrage;
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="artist", type="string", length=250, nullable=false)
+     */
+    private $artist;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ouvrage
+     *
+     * @param \mpc\PlatformBundle\Entity\Ouvrage $ouvrage
+     *
+     * @return Cd
+     */
+    public function setOuvrage(\mpc\PlatformBundle\Entity\Ouvrage $ouvrage = null)
+    {
+        $this->ouvrage = $ouvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get ouvrage
+     *
+     * @return \mpc\PlatformBundle\Entity\Ouvrage
+     */
+    public function getOuvrage()
+    {
+        return $this->ouvrage;
+    }
 }
-

@@ -1,11 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-            <h4>Mes réservations : </h4>
+            <h4>Confirmation de réservation </h4>
             
             <span><a href="{{ path('mpc_platform_homepage') }}">Tous</a></span> | <span><a href="{{ path('filter_bd') }}">BDs</a></span><span> | Livres</span><span> | <a href="{{ path('filter_cd') }}">CDs</a></span>
-            <p>{% for reservation in reservations %}
+            <p>Ajout ok !</p>
 
-            <li>{{ reservation.ouvrage.titre }}</li>
-                       {% endfor %}</p>
+            
+            
 {% endblock %}

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ouvrage
  *
- * @ORM\Table(name="ouvrage", indexes={@ORM\Index(name="auteur_id", columns={"auteur_id"}), @ORM\Index(name="genre_id", columns={"genre_id"})})
+ * @ORM\Table(name="ouvrage", indexes={@ORM\Index(name="auteur_id", columns={"auteur_id"})})
  * @ORM\Entity
  */
 class Ouvrage
@@ -41,16 +41,6 @@ class Ouvrage
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var \mpc\PlatformBundle\Entity\Genre
-     *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Genre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
-     * })
-     */
-    private $genre;
 
     /**
      * @var \mpc\PlatformBundle\Entity\Auteurs
@@ -144,30 +134,6 @@ class Ouvrage
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set genre
-     *
-     * @param \mpc\PlatformBundle\Entity\Genre $genre
-     *
-     * @return Ouvrage
-     */
-    public function setGenre(\mpc\PlatformBundle\Entity\Genre $genre = null)
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    /**
-     * Get genre
-     *
-     * @return \mpc\PlatformBundle\Entity\Genre
-     */
-    public function getGenre()
-    {
-        return $this->genre;
     }
 
     /**

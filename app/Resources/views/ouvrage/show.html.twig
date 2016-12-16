@@ -23,7 +23,7 @@
             </tr>
         </tbody>
     </table>
-
+<li>{{ ouvrage.auteur.nom }}</li>
     <ul>
         <li>
             <a href="/">Retour</a>
@@ -39,6 +39,6 @@
         </li>
         {% else %}
         {% endif %}
-        <a href="{{ path('ouvrage_mesreservations', { 'id': ouvrage.id }) }}">Réserver</a>
+        <a href="{{ path('ouvrage_ajoutreservations', { 'id': ouvrage.id }) }}">Réserver</a>
     </ul>
 {% endblock %}
