@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ouvrage
  *
- * @ORM\Table(name="ouvrage", indexes={@ORM\Index(name="auteur_id", columns={"auteur_id"})})
+ * @ORM\Table(name="ouvrage")
  * @ORM\Entity
  */
 class Ouvrage
@@ -41,16 +41,13 @@ class Ouvrage
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var \mpc\PlatformBundle\Entity\Auteurs
+    
+     /**
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Auteurs")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="cover", type="string", length=250, nullable=false)
      */
-    private $auteur;
+    private $cover;
 
 
 
@@ -136,27 +133,4 @@ class Ouvrage
         return $this->id;
     }
 
-    /**
-     * Set auteur
-     *
-     * @param \mpc\PlatformBundle\Entity\Auteurs $auteur
-     *
-     * @return Ouvrage
-     */
-    public function setAuteur(\mpc\PlatformBundle\Entity\Auteurs $auteur = null)
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    /**
-     * Get auteur
-     *
-     * @return \mpc\PlatformBundle\Entity\Auteurs
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
 }

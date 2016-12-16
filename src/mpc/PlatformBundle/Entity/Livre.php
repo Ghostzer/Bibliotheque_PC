@@ -30,6 +30,20 @@ class Livre
      * })
      */
     private $ouvrage;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="auteur", type="string", length=250, nullable=false)
+     */
+    private $auteur;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="genre", type="string", length=250, nullable=false)
+     */
+    private $genre;
 
 
 

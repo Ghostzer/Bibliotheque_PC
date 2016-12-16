@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cd", indexes={@ORM\Index(name="ouvrage_id", columns={"ouvrage_id"})})
  * @ORM\Entity
  */
-class Cd
-{
+class Cd {
+
     /**
      * @var integer
      *
@@ -30,23 +30,27 @@ class Cd
      * })
      */
     private $ouvrage;
-    
-        /**
+
+    /**
      * @var string
      *
      * @ORM\Column(name="artist", type="string", length=250, nullable=false)
      */
     private $artist;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="genre", type="string", length=250, nullable=false)
+     */
+    private $genre;
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -57,8 +61,7 @@ class Cd
      *
      * @return Cd
      */
-    public function setOuvrage(\mpc\PlatformBundle\Entity\Ouvrage $ouvrage = null)
-    {
+    public function setOuvrage(\mpc\PlatformBundle\Entity\Ouvrage $ouvrage = null) {
         $this->ouvrage = $ouvrage;
 
         return $this;
@@ -69,8 +72,7 @@ class Cd
      *
      * @return \mpc\PlatformBundle\Entity\Ouvrage
      */
-    public function getOuvrage()
-    {
+    public function getOuvrage() {
         return $this->ouvrage;
     }
 
@@ -81,8 +83,7 @@ class Cd
      *
      * @return Cd
      */
-    public function setArtist($artist)
-    {
+    public function setArtist($artist) {
         $this->artist = $artist;
 
         return $this;
@@ -93,8 +94,8 @@ class Cd
      *
      * @return string
      */
-    public function getArtist()
-    {
+    public function getArtist() {
         return $this->artist;
     }
+
 }
