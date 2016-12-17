@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h4>Vous avez actuellement en votre pocession : </h4>
+
+    <ul>
+    {% for emprunt in emprunts %}
+    <li>{{ emprunt.ouvrage.titre }} Du {{ emprunt.dateEmprunt|date('d/m/Y') }} au {{ emprunt.dateRetour|date('d/m/Y') }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -4,7 +4,7 @@ mpc_platform_homepage:
     
 ouvrage_ajoutreservations:
     path:    /ajoutreservation
-    defaults: { _controller: mpcPlatformBundle:Default:ajoutReservations }
+    defaults: { _controller: mpcPlatformBundle:Default:ajoutReservation }
     
 ouvrage_mesreservations:
     path:    /mes-reservations
@@ -13,3 +13,11 @@ ouvrage_mesreservations:
 ouvrage_listereservations:
     path:    /liste-reservations
     defaults: { _controller: mpcPlatformBundle:Default:listeReservation }
+    
+ouvrage_ajoutemprunt:
+    path:    /ajoutemprunt
+    defaults: { _controller: mpcPlatformBundle:Default:ajoutEmprunt }
+    
+ouvrage_mesemprunts:
+    path:    /mes-emprunts
+    defaults: { _controller: mpcPlatformBundle:Default:mesEmprunts }

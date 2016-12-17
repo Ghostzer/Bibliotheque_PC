@@ -14,16 +14,17 @@
                 <li class="icon">
                     <a href="javascript:void(0);" onclick="functionMenu()">&#9776;</a>
                 </li>
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% if is_granted("ROLE_USER") %}
                     <li style="float:right"><a href="{{ path('fos_user_security_logout') }}"><span></span>Se déconnecter</a></li>
                             {% else %}
                     <li style="float:right"><a href="#" id="myBtn"><span></span>Se connecter<span></span></a></li>
                             {% endif %}
             </ul>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if is_granted("ROLE_USER") %}
                 <ul class="topnav" id="navCompte">
-                    <li><a href="profil">Mon profil</a></li>
+                    <li><a href="profile">Mon profil</a></li>
                     <li><a href="mes-reservations">Mes réservations</a></li>
+                    <li><a href="mes-emprunts">Mes emprunts en cours</a></li>
                     <li class="icon">
                         <a href="javascript:void(0);" onclick="functionCompte()">&#9921;</a>
                     </li>{% else %}
@@ -41,13 +42,14 @@
             <ul>
                 {% if is_granted("ROLE_ADMIN") %}
                     <li><h4>Administration</h4></li>
-                    <li><a href="/reservation">Réservations en cours</a></li>
-                    <li><a href="/emprunt">Emprunts en cours</a></li>
+                    <li><a href="/liste-reservations">Liste des réservations en cours</a></li>
+                    <li><a href="/liste-emprunts">Liste des emprunts en cours</a></li>
                     {% endif %}
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% if is_granted("ROLE_USER") %}
                     <li><h4>Mon espace</h4></li>
-                    <li><a href="/profil">Mon profil</a></li>
-                    <li><a href="/reservation">Voir mes réservations</a></li>
+                    <li><a href="/profile">Mon profil</a></li>
+                    <li><a href="mes-reservations">Mes réservations</a></li>
+                    <li><a href="mes-emprunts">Mes emprunts en cours</a></li>
                     {% else %}
                     {% endif %}
                 <li><h4>Documents</h4></li>

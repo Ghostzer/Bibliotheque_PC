@@ -5,7 +5,9 @@ namespace mpc\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use mpc\PlatformBundle\Entity\Reservation;
+use mpc\PlatformBundle\Entity\Emprunt;
 use mpc\PlatformBundle\Entity\Utilisateurs;
+use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 
 class DefaultController extends Controller {
 
@@ -21,7 +23,7 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function ajoutReservationsAction(Request $request) {
+    public function ajoutReservationAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -48,7 +50,7 @@ class DefaultController extends Controller {
     public function mesReservationAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $reservations = $em->getRepository('mpcPlatformBundle:Reservation')->findAll();
+        $reservations = $em->getRepository('mpcPlatformBundle:Reservation')->findByUtilisateur($this->getUser()); // La fonction findByX permets la recherche par utilisateur avec l'utilisateur actuel dans la table Reservation
 
         return $this->render('mpcPlatformBundle:Default:mesreservations.html.twig', array('reservations' => $reservations,
         ));
@@ -62,5 +64,47 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:listereservations.html.twig', array('reservations' => $reservations
         ));
     }
+    
+        public function mesEmpruntsAction() {
+        $em = $this->getDoctrine()->getManager();
 
+        $emprunts = $em->getRepository('mpcPlatformBundle:Emprunt')->findByUtilisateur($this->getUser()); // La fonction findByX permets la recherche par utilisateur avec l'utilisateur actuel dans la table Reservation
+
+
+        return $this->render('mpcPlatformBundle:Default:mesemprunts.html.twig', array('emprunts' => $emprunts
+        ));
+        
+        
+    }
+
+    public function ajoutempruntAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $id_select = $request->get('id');
+        
+        $date = new \DateTime();
+        
+        $datetoday = new \DateTime();
+        $currentuser = $this->getUser();
+        $dateInterval = new \DateInterval("P15D");
+        $dateretour = $datetoday->add($dateInterval);
+
+        $objet = $em->getRepository('mpcPlatformBundle:Ouvrage')->find($id_select);
+
+        $emprunt = new Emprunt; 
+
+        $emprunt->setOuvrage($objet);
+        $emprunt->SetdateEmprunt($date); 
+        $emprunt->setUtilisateur($currentuser); 
+        $emprunt->setdateRetour($dateretour);
+
+        $em->persist($emprunt);
+
+        $em->flush();
+
+
+        return $this->render('mpcPlatformBundle:Default:ajout_reservations_ok.html.twig');
+    }
+    
 }
