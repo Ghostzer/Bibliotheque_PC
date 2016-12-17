@@ -25,34 +25,23 @@ class DefaultController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
 
-        $id_select = $request->get('id');
+        $id_select = $request->get('id'); // on récupère la valeur "id", par exemple le chiffre 2 et on la place dans la variable $id_select, $id_select = 2
         $datetoday = new \DateTime();
+        $currentuser = $this->getUser();
 
-        $objet = $em->getRepository('mpcPlatformBundle:Ouvrage')->find($id_select);
+        $objet = $em->getRepository('mpcPlatformBundle:Ouvrage')->find($id_select); // Il va chercher dans la table Ouvrage l'id correspondant (2 toujousr dans l'exemple) afin de l'associer
 
-        $reservation = new Reservation;
+        $reservation = new Reservation; // on créer un objet vide dans la table Reservation
 
-        $reservation->setOuvrage($objet);
-        $reservation->SetDate($datetoday);
+        $reservation->setOuvrage($objet); // on set la colonne ouvrage_id avec la variable objet, donc 2
+        $reservation->SetDate($datetoday); // on set la date avec la date d'aujourd'hui
+        $reservation->setUtilisateur($currentuser); // on set l'utilisateur avec celui actuellement logué
 
         $em->persist($reservation);
-
-        $reservation->setDate($datetoday);
-
-        //jusqu'ici ça fonctionne sans setter l'user
-        
-//        $currentuser = $this->getUser();
-//        $finduser = $em->getRepository('mpcPlatformBundle:Utilisateurs')->find($currentuser);
-//        $add_user = new Reservation;
-//        $add_user = setUtilisateur($utilisateur);
-
-//        $em->persist($add_user);
-
 
         $em->flush();
 
 
-//        return $this->render('mpcPlatformBundle:Default:ajout_reservations_ok.html.twig', array('currentuser' => $currentuser, 'finduser' => $finduser));
         return $this->render('mpcPlatformBundle:Default:ajout_reservations_ok.html.twig');
     }
 
