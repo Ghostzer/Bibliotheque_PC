@@ -5,11 +5,7 @@
 
     <ul>
     {% for emprunt in emprunts %}
-        {% if emprunt.dateRetour|date('d/m/Y') < datetoday %}
-        <li>{{ emprunt.ouvrage.titre }} - Retour avant le {{ emprunt.dateRetour|date('d/m/Y') }} - par {{ emprunt.utilisateur.username }}</li>
-        {%else%}
-        prout
-        {%endif%}
+        <li>{{ emprunt.ouvrage.titre }} à été réservé le {{ emprunt.dateEmprunt|date('d/m/Y') }} - Retour avant le {{ emprunt.dateRetour|date('d/m/Y') }} - par {{ emprunt.utilisateur.username }}</li>
     {% endfor %}
 
     </ul>

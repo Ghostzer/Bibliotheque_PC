@@ -77,7 +77,7 @@ class DefaultController extends Controller {
         
     }
 
-    public function ajoutempruntAction(Request $request) {
+    public function ajoutEmpruntAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -100,6 +100,10 @@ class DefaultController extends Controller {
         $emprunt->setdateRetour($dateretour);
 
         $em->persist($emprunt);
+        
+//        $reservation = $em->getRepository('mpcPlatformBundle:Reservation')->findByOuvrage($id_select);
+//        $em->remove($reservation);
+//        
 
         $em->flush();
 
