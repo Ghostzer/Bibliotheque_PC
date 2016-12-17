@@ -21,3 +21,7 @@ ouvrage_ajoutemprunt:
 ouvrage_mesemprunts:
     path:    /mes-emprunts
     defaults: { _controller: mpcPlatformBundle:Default:mesEmprunts }
+    
+ouvrage_listeEmprunts:
+    path:    /liste-emprunts
+    defaults: { _controller: mpcPlatformBundle:Default:listeEmprunts }

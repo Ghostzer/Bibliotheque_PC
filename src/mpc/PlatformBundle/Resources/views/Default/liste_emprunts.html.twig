@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h4>Liste de tous les emprunts : </h4>
+
+    <ul>
+    {% for emprunt in emprunts %}
+        {% if emprunt.dateRetour|date('d/m/Y') < datetoday %}
+        <li>{{ emprunt.ouvrage.titre }} - Retour avant le {{ emprunt.dateRetour|date('d/m/Y') }} - par {{ emprunt.utilisateur.username }}</li>
+        {%else%}
+        prout
+        {%endif%}
+    {% endfor %}
+
+    </ul>
+{% endblock %}

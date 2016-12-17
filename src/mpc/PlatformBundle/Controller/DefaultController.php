@@ -44,7 +44,7 @@ class DefaultController extends Controller {
         $em->flush();
 
 
-        return $this->render('mpcPlatformBundle:Default:ajout_reservations_ok.html.twig');
+        return $this->render('mpcPlatformBundle:Default:ajout_reservation_ok.html.twig');
     }
 
     public function mesReservationAction() {
@@ -52,7 +52,7 @@ class DefaultController extends Controller {
 
         $reservations = $em->getRepository('mpcPlatformBundle:Reservation')->findByUtilisateur($this->getUser()); // La fonction findByX permets la recherche par utilisateur avec l'utilisateur actuel dans la table Reservation
 
-        return $this->render('mpcPlatformBundle:Default:mesreservations.html.twig', array('reservations' => $reservations,
+        return $this->render('mpcPlatformBundle:Default:mes_reservations.html.twig', array('reservations' => $reservations,
         ));
     }
 
@@ -61,7 +61,7 @@ class DefaultController extends Controller {
 
         $reservations = $em->getRepository('mpcPlatformBundle:Reservation')->findAll();
 
-        return $this->render('mpcPlatformBundle:Default:listereservations.html.twig', array('reservations' => $reservations
+        return $this->render('mpcPlatformBundle:Default:liste_reservations.html.twig', array('reservations' => $reservations
         ));
     }
     
@@ -71,7 +71,7 @@ class DefaultController extends Controller {
         $emprunts = $em->getRepository('mpcPlatformBundle:Emprunt')->findByUtilisateur($this->getUser()); // La fonction findByX permets la recherche par utilisateur avec l'utilisateur actuel dans la table Reservation
 
 
-        return $this->render('mpcPlatformBundle:Default:mesemprunts.html.twig', array('emprunts' => $emprunts
+        return $this->render('mpcPlatformBundle:Default:mes_emprunts.html.twig', array('emprunts' => $emprunts
         ));
         
         
@@ -104,7 +104,18 @@ class DefaultController extends Controller {
         $em->flush();
 
 
-        return $this->render('mpcPlatformBundle:Default:ajout_reservations_ok.html.twig');
+        return $this->render('mpcPlatformBundle:Default:ajout_emprunt_ok.html.twig');
     }
+    
+        public function listeEmpruntsAction() {
+        $em = $this->getDoctrine()->getManager();
+        $datetoday = new \DateTime();
+
+        $emprunts = $em->getRepository('mpcPlatformBundle:Emprunt')->findAll();
+
+        return $this->render('mpcPlatformBundle:Default:liste_emprunts.html.twig', array('emprunts' => $emprunts, 'datetoday' => $datetoday
+        ));
+    }
+    
     
 }
