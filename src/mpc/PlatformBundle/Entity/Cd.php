@@ -51,6 +51,13 @@ class Cd {
      * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="cover", type="string", length=250, nullable=false)
+     */
+    private $cover;
 
     /**
      * Get id
@@ -152,5 +159,29 @@ class Cd {
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     *
+     * @return Cd
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }

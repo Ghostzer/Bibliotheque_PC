@@ -51,6 +51,13 @@ class Livre
      * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
+    
+         /**
+     * @var string
+     *
+     * @ORM\Column(name="cover", type="string", length=250, nullable=false)
+     */
+    private $cover;
 
 
 
@@ -158,5 +165,29 @@ class Livre
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     *
+     * @return Livre
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }
