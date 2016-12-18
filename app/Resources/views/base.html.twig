@@ -20,110 +20,92 @@
                     <li style="float:right"><a href="#" id="myBtn"><span></span>Se connecter<span></span></a></li>
                             {% endif %}
             </ul>
-            {% if is_granted("ROLE_USER") %}
-                <ul class="topnav" id="navCompte">
-                    <li><a href="profile">Mon profil</a></li>
+            <ul class="topnav" id="navCompte">
+                {% if is_granted("ROLE_USER") %}
+                    <li><a href="/profile">Mon profil</a></li>
                     <li><a href="mes-reservations">Mes réservations</a></li>
                     <li><a href="mes-emprunts">Mes emprunts en cours</a></li>
                     <li class="icon">
                         <a href="javascript:void(0);" onclick="functionCompte()">&#9921;</a>
                     </li>{% else %}
-                    {% endif %}
-            </ul>
-                </ul>
-            </div>
-
-            <div id="content">
-                <div id="main">
-                {% block body %}{% endblock %}
-            {% block javascripts %}{% endblock %}
-        </div>
-        <div id="aside">
-            <ul>
+                {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
-                    <li><h4>Administration</h4></li>
-                    <li><a href="/liste-reservations">Liste des réservations en cours</a></li>
-                    <li><a href="/liste-emprunts">Liste des emprunts en cours</a></li>
-                    {% endif %}
-                    {% if is_granted("ROLE_USER") %}
-                    <li><h4>Mon espace</h4></li>
-                    <li><a href="/profile">Mon profil</a></li>
-                    <li><a href="mes-reservations">Mes réservations</a></li>
-                    <li><a href="mes-emprunts">Mes emprunts en cours</a></li>
-                    {% else %}
-                    {% endif %}
-                <li><h4>Documents</h4></li>
-                <li><a href="/">Voir tous les ouvrages</a>
-                <li><a href="bd">Voir les BDs</a></li>
-                <li><a href="livre">Voir les livres</a></li>
-                <li><a href="cd">Voir les CDs</a></li>
+                    <li><a href="liste-reservations">Liste des réservations</a></li>
+                    <li><a href="liste-emprunts">Liste emprunts</a></li>
+                {% else %}
+                {% endif %}
             </ul>
-        </div>
-    </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p><form class="form-inline text-right" action="{{ path("fos_user_security_check") }}" method="post">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <label for="username"><input type="text" class="form-control" id="username" name="_username" placeholder="Utilisateur" required="required" size='10'></label>
-                <label for="password"><input type="password" class="form-control" id="password" name="_password" placeholder="Mot de passe" required="required" size='10'></label>
-                <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" value="on" hidden></label>
-                <button type="submit" id="_submit" name="_submit"><span></span>Ok</button>
-            </form></p>
-        </div>
-
+        </ul>
     </div>
 
-    <script>
-        // Get the modal
-        var modal = document.getElementById('myModal');
+    <div id="content">
+        <div id="main">
+        {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</div>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><form class="form-inline text-right" action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <label for="username"><input type="text" class="form-control" id="username" name="_username" placeholder="Utilisateur" required="required" size='10'></label>
+            <label for="password"><input type="password" class="form-control" id="password" name="_password" placeholder="Mot de passe" required="required" size='10'></label>
+            <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" value="on" hidden></label>
+            <button type="submit" id="_submit" name="_submit"><span></span>Ok</button>
+        </form></p>
+        
+        
+    </div>
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+</div>
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
-            modal.style.display = "block";
-        };
+<script>
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+    var modal = document.getElementById('myModal');
+
+    var btn = document.getElementById("myBtn");
+
+
+    var span = document.getElementsByClassName("close")[0];
+ 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    };
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
             modal.style.display = "none";
-        };
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        };
-    </script>
-
-    <script>
-        function functionMenu() {
-            var x = document.getElementById("navMenu");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
         }
-    </script>
-    <script>
-        function functionCompte() {
-            var x = document.getElementById("navCompte");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
+    };
+</script>
+
+<script>
+    function functionMenu() {
+        var x = document.getElementById("navMenu");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
         }
-    </script>
+    }
+</script>
+<script>
+    function functionCompte() {
+        var x = document.getElementById("navCompte");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
 </body>
 </html>

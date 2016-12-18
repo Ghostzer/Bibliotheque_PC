@@ -5,7 +5,13 @@
     <h4>Les BDs :</h4>
     <ul>
         {% for bd in bds %}
-            <li><i>{{ bd.ouvrage.titre }}</i> {% if bd.date %} <span class="add">ajouté le {{ bd.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': bd.id }) }}">Voir</a></li>
+{#            <li><i>{{ bd.ouvrage.titre }}</i> {% if bd.date %} <span class="add">ajouté le {{ bd.date|date('d/m/Y') }}{% endif %}</span> - <a href="{{ path('ouvrage_show', { 'id': bd.id }) }}">Voir</a></li>#}
+<div class="ouvragecontent">
+    {% for cover in covers %}
+    <div class="cover"> <img src="{{ cover.cover }}" height="42" width="42"> </div>
+    {% endfor %}
+    
+</div>
                 {% endfor %}
     </ul>
         <h4>Les livres :</h4>

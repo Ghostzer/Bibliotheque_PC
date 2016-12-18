@@ -15,11 +15,14 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'DESC']); //trie par date
+        $covers = $em->getRepository('mpcPlatformBundle:Ouvrage')->findAll();
+        
         $livres = $em->getRepository('mpcPlatformBundle:Livre')->findBy([], ['date' => 'DESC']); //trie par date
         $cds = $em->getRepository('mpcPlatformBundle:Cd')->findBy([], ['date' => 'DESC']); //trie par date
+        
 
 
-        return $this->render('mpcPlatformBundle:Default:index.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds
+        return $this->render('mpcPlatformBundle:Default:index.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds, 'covers' => $covers
         ));
     }
 
@@ -87,8 +90,8 @@ class DefaultController extends Controller {
         
         $datetoday = new \DateTime();
         $currentuser = $this->getUser();
-        $dateInterval = new \DateInterval("P15D");
-        $dateretour = $datetoday->add($dateInterval);
+        $dateInterval = new \DateInterval("P15D"); // on définit 15 jours d'interval pour l'emprunt...
+        $dateretour = $datetoday->add($dateInterval); // ... et on l'ajoute à la date d'aujourd'hui pour le calcul
 
         $objet = $em->getRepository('mpcPlatformBundle:Ouvrage')->find($id_select);
 
@@ -96,7 +99,7 @@ class DefaultController extends Controller {
 
         $emprunt->setOuvrage($objet);
         $emprunt->SetdateEmprunt($date); 
-        $emprunt->setUtilisateur($currentuser); 
+        $emprunt->setUtilisateur($currentuser);  // A modifier : ici il faut récupérer l'utilisateur qui emprunte, et non l'utilisateur en cours qui valide l'emprunt (admin donc)
         $emprunt->setdateRetour($dateretour);
 
         $em->persist($emprunt);
