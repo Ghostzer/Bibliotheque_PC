@@ -19,7 +19,15 @@ body {
 ul {
     list-style: none; 
     margin: 0;
+}
 
+.listeindex {
+    display: table-cell;
+    text-align: center;
+}
+
+.listecontent {
+    padding:10px;
 }
 
 .ma_ul li {
