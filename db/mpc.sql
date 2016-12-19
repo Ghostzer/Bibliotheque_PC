@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 19, 2016 at 04:55 PM
+-- Generation Time: Dec 19, 2016 at 09:04 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -88,6 +88,27 @@ CREATE TABLE `emprunt` (
 
 INSERT INTO `emprunt` (`id`, `ouvrage_id`, `date_retour`, `date_emprunt`, `utilisateur_id`) VALUES
 (22, 1, '2017-01-03', '2016-12-19', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `evenements`
+--
+
+CREATE TABLE `evenements` (
+  `id` int(11) NOT NULL,
+  `titre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `evenements`
+--
+
+INSERT INTO `evenements` (`id`, `titre`, `detail`, `date`) VALUES
+(1, 'Porte ouverte', 'Porte ouverte de la mediathèque ! Venez nombreux !', '2017-01-19 00:00:00'),
+(2, 'Journée Comics', 'Pour les amateurs de BDs Comics venez découvrir l\'association "Comic Pour Tous" qui vous permettra de vous transformer en Super héros ou vilains !', '2017-03-01 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -222,6 +243,12 @@ ALTER TABLE `emprunt`
   ADD KEY `IDX_364071D7FB88E14F` (`utilisateur_id`);
 
 --
+-- Indexes for table `evenements`
+--
+ALTER TABLE `evenements`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `livre`
 --
 ALTER TABLE `livre`
@@ -270,6 +297,11 @@ ALTER TABLE `cd`
 --
 ALTER TABLE `emprunt`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `evenements`
+--
+ALTER TABLE `evenements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `livre`
 --
