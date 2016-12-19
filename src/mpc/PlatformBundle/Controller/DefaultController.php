@@ -79,7 +79,7 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $id_select = $request->get('id');
-        
+
 
         $date = new \DateTime();
 
@@ -114,6 +114,17 @@ class DefaultController extends Controller {
         $emprunts = $em->getRepository('mpcPlatformBundle:Emprunt')->findAll();
 
         return $this->render('mpcPlatformBundle:Default:liste_emprunts.html.twig', array('emprunts' => $emprunts, 'datetoday' => $datetoday
+        ));
+    }
+
+    public function voirEvenementAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $id_select = $request->get('id');
+        $objets = $em->getRepository('mpcPlatformBundle:evenements')->findOneBy(array('id' => $id_select));
+
+        return $this->render('mpcPlatformBundle:Default:evenements.html.twig', array('objets' => $objets, 'id_select' => $id_select
         ));
     }
 

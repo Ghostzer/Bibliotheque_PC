@@ -25,3 +25,11 @@ ouvrage_mesemprunts:
 ouvrage_listeEmprunts:
     path:    /liste-emprunts
     defaults: { _controller: mpcPlatformBundle:Default:listeEmprunts }
+    
+evenements:
+    path:    /evenements
+    defaults: { _controller: mpcPlatformBundle:Default:voirEvenement }
+    
+evenementId:
+    path:    /evenements?id={id}
+    defaults: { _controller: mpcPlatformBundle:Default:voirEvenement }

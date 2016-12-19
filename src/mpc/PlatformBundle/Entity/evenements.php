@@ -31,7 +31,7 @@ class evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="detail", type="text")
+     * @ORM\Column(name="detail", type="string", length=255)
      */
     private $detail;
 
