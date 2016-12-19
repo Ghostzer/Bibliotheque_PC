@@ -58,7 +58,7 @@ class Bd {
      * @ORM\Column(name="cover", type="string", length=250, nullable=false)
      */
     private $cover;
-
+    
     /**
      * Get id
      *

@@ -21,23 +21,18 @@
     </table>
     <ul>
         <li>
-            <a href="/">Retour</a>
+        <p><a href="{{ path('ouvrage_ajoutreservations', { 'id': ouvrage.id }) }}">Réserver</a></p>
         </li>
         <li>
+            <a href="/">Retour</a>
         </li>
         {% if is_granted("ROLE_ADMIN") %}
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Effacer">
+                <input type="submit" value="Effacer" class="delshow">
             {{ form_end(delete_form) }}
-            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">Edit</a>
         </li>
-            <tr>
-                <th>Id</th>
-                <td>{{ ouvrage.id }}</td>
-            </tr>
         {% else %}
         {% endif %}
-        <p><a href="{{ path('ouvrage_ajoutreservations', { 'id': ouvrage.id }) }}">Réserver</a></p>
     </ul>
 {% endblock %}

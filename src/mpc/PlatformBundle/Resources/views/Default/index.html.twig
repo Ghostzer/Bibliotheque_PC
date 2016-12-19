@@ -2,22 +2,23 @@
 
 {% block body %}
     <h3>Les derniers ouvrages ajoutés : </h3>
+        
     <h4>Les BDs :</h4>
     <ul>
         {% for bd in bds %}
             <li class="listeindex">
                 <div class="listecontent">
-                    <a href="{{ path('ouvrage_show', { 'id': bd.id }) }}">
+                    <a href="{{ path('ouvrage_show', { 'id': bd.ouvrage.id }) }}">
                     <div>
-                        <img src="{{ bd.cover }}" height="220" width="160">
+                        <img src="{{ bd.cover }}" height="220" width="160"  class="coverbd" >
                     </div>
                     <div>
-                        {{ bd.ouvrage.titre }}
-                    </div>  
+                        <span class="coverbd">{{ bd.ouvrage.titre }}</span>
+                    </div>
                     <span class="add">ajouté le {{ bd.date|date('d/m/Y') }}</span>
                     </a>
                 </div>
-            </li> 
+            </li>
         {% endfor %}
     </ul>
     <h4>Les livres :</h4>
@@ -25,16 +26,16 @@
         {% for livre in livres %}
             <li class="listeindex">
                 <div class="listecontent">
-                    <a href="{{ path('ouvrage_show', { 'id': livre.id }) }}">
+                    <a href="{{ path('ouvrage_show', { 'id': livre.ouvrage.id }) }}">
                 <div>
-                    <img src="{{ livre.cover }}" height="250" width="160">
+                    <img src="{{ livre.cover }}" height="250" width="160"  class="coverlivre" >
                 </div>
                 <div>
-                    {{ livre.auteur }}
+                     <span class="coverbd">{{ livre.auteur }}</span>
                     <div>
-                        {{ livre.ouvrage.titre }}
-                    </div> 
-                </div>  
+                        <span class="coverbd">{{ livre.ouvrage.titre }}</span>
+                    </div>
+                </div>
                 <span class="add">ajouté le {{ livre.date|date('d/m/Y') }}</span>
                     </a>
                 </div>
@@ -46,14 +47,14 @@
         {% for cd in cds %}
             <li class="listeindex">
                 <div class="listecontent">
-                    <a href="{{ path('ouvrage_show', { 'id': cd.id }) }}">
-                <img src="{{ cd.cover }}" height="140" width="160">
+                    <a href="{{ path('ouvrage_show', { 'id': cd.ouvrage.id }) }}">
+                <img src="{{ cd.cover }}" height="160" width="160"  class="covercd" >
                 <div>
-                    {{ cd.artist }}
+                     <span class="coverbd">{{ cd.artist }}</span>
                     <div>
-                        {{ cd.ouvrage.titre }}
+                        <span class="coverbd">{{ cd.ouvrage.titre }}</span>
                     </div>
-                </div>  
+                </div>
                 <span class="add">ajouté le {{ cd.date|date('d/m/Y') }}</span>
                     </a>
                 </div>

@@ -59,8 +59,6 @@ class Livre
      */
     private $cover;
 
-
-
     /**
      * Get id
      *

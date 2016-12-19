@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 17, 2016 at 04:48 PM
+-- Generation Time: Dec 19, 2016 at 04:55 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -31,16 +31,18 @@ CREATE TABLE `bd` (
   `ouvrage_id` int(11) DEFAULT NULL,
   `auteur` varchar(250) NOT NULL,
   `genre` varchar(250) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `cover` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bd`
 --
 
-INSERT INTO `bd` (`id`, `ouvrage_id`, `auteur`, `genre`, `date`) VALUES
-(1, 1, 'René Goscinny ', 'Humour', '2016-10-14'),
-(2, 2, 'ZEP', 'Humour', '2016-12-02');
+INSERT INTO `bd` (`id`, `ouvrage_id`, `auteur`, `genre`, `date`, `cover`) VALUES
+(1, 1, 'Alexandre Astier', 'Humour', '2016-10-14', 'covers/kaamelott.jpg'),
+(2, 2, 'ZEP', 'Humour', '2016-12-02', 'covers/titeuf.jpg'),
+(3, 8, 'Midam', 'Humour', '2016-12-19', 'covers/kidpaddle.jpg');
 
 -- --------------------------------------------------------
 
@@ -53,16 +55,18 @@ CREATE TABLE `cd` (
   `ouvrage_id` int(11) DEFAULT NULL,
   `artist` varchar(250) NOT NULL,
   `genre` varchar(250) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `cover` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cd`
 --
 
-INSERT INTO `cd` (`id`, `ouvrage_id`, `artist`, `genre`, `date`) VALUES
-(2, 3, 'Metallica', 'Heavy metal', '2016-11-03'),
-(3, 6, 'Nero', 'Drum and Bass', '2016-12-16');
+INSERT INTO `cd` (`id`, `ouvrage_id`, `artist`, `genre`, `date`, `cover`) VALUES
+(2, 3, 'Metallica', 'Heavy metal', '2016-11-03', 'covers/metallica.jpg'),
+(3, 6, 'Nero', 'Drum and Bass', '2016-12-16', 'covers/nero.jpg'),
+(4, 10, 'Astrix', 'GOA', '2016-12-19', 'covers/astrix.jpg');
 
 -- --------------------------------------------------------
 
@@ -83,9 +87,7 @@ CREATE TABLE `emprunt` (
 --
 
 INSERT INTO `emprunt` (`id`, `ouvrage_id`, `date_retour`, `date_emprunt`, `utilisateur_id`) VALUES
-(1, 3, '2017-01-12', '2016-12-08', 2),
-(4, 4, '2017-01-06', '2016-12-17', 3),
-(5, 2, '2017-01-01', '2016-12-17', 3);
+(22, 1, '2017-01-03', '2016-12-19', 6);
 
 -- --------------------------------------------------------
 
@@ -98,16 +100,18 @@ CREATE TABLE `livre` (
   `ouvrage_id` int(11) DEFAULT NULL,
   `auteur` varchar(250) NOT NULL,
   `genre` varchar(250) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `cover` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `livre`
 --
 
-INSERT INTO `livre` (`id`, `ouvrage_id`, `auteur`, `genre`, `date`) VALUES
-(1, 4, 'J.R.R. Tolkien', 'Fantaisie', '2016-12-15'),
-(2, 7, 'Tom Clancy', 'Militaire', '2016-11-25');
+INSERT INTO `livre` (`id`, `ouvrage_id`, `auteur`, `genre`, `date`, `cover`) VALUES
+(1, 4, 'J.R.R. Tolkien', 'Fantaisie', '2016-12-15', 'covers/sda.jpg'),
+(2, 7, 'Tom Clancy', 'Militaire', '2016-11-25', 'covers/tomclancy.jpg'),
+(3, 9, 'Peter Grimsdale', 'Guerre', '2016-12-19', 'covers/bf4.jpg');
 
 -- --------------------------------------------------------
 
@@ -127,13 +131,15 @@ CREATE TABLE `ouvrage` (
 --
 
 INSERT INTO `ouvrage` (`id`, `titre`, `annee`, `cover`) VALUES
-(1, 'Asterix Chez Les Bretons', 1999, ''),
+(1, 'Kaamelott & Le Serpent Géant', 1999, 'covers/asterix.jpg'),
 (2, 'Titeuf C\'est pô juste !', 2002, ''),
 (3, 'Ride The Lightning', 1984, ''),
 (4, 'Le seigneurs des anneaux', 1981, ''),
-(5, 'Charlie et la chocolaterie', 1980, ''),
 (6, 'Between II Worlds', 2015, ''),
-(7, 'Mort ou vif 2', 2009, '');
+(7, 'Mort ou vif 2', 2009, ''),
+(8, 'Kid Paddle Carnage Total', 2006, ''),
+(9, 'Battlefield 4', 2013, ''),
+(10, 'ArtCore', 1998, '');
 
 -- --------------------------------------------------------
 
@@ -153,10 +159,7 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `date`, `ouvrage_id`, `utilisateur_id`) VALUES
-(19, '2016-12-16', 4, 4),
-(61, '2016-12-17', 3, 2),
-(65, '2016-12-17', 1, 3),
-(69, '2016-12-17', 2, 3);
+(82, '2016-12-19', 8, 6);
 
 -- --------------------------------------------------------
 
@@ -186,10 +189,11 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-17 15:02:34', NULL, NULL, 'a:0:{}'),
-(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-17 15:51:51', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
+(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-19 12:12:46', NULL, NULL, 'a:0:{}'),
+(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-19 14:09:02', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
 (4, NULL, NULL, 'azerty', 'azerty', 'hello@hello.hello', 'hello@hello.hello', 1, NULL, '$2y$13$2GcKXm0RwGMkCXcEmnA5Ses8iutDz8k4A3WDJsbBrGx4VguMHgeei', '2016-12-15 09:36:00', NULL, NULL, 'a:0:{}'),
-(5, NULL, NULL, 'aaa', 'aaa', 'a@a.a', 'a@a.a', 1, NULL, '$2y$13$vVI6EI9vmxPGjwbPXnIq.e56FrjStuuVR166y2TKKyLkHb9bvW8eK', '2016-12-15 09:43:56', NULL, NULL, 'a:0:{}');
+(5, NULL, NULL, 'aaa', 'aaa', 'a@a.a', 'a@a.a', 1, NULL, '$2y$13$vVI6EI9vmxPGjwbPXnIq.e56FrjStuuVR166y2TKKyLkHb9bvW8eK', '2016-12-15 09:43:56', NULL, NULL, 'a:0:{}'),
+(6, NULL, NULL, 'Jérome', 'jérome', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$6zSnK18zppp2dO6e06qU8e0/yrAOcAX/NNiiu2.dhgTAdZP7fJO6q', '2016-12-19 14:08:35', NULL, NULL, 'a:0:{}');
 
 --
 -- Indexes for dumped tables
@@ -255,37 +259,37 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT for table `bd`
 --
 ALTER TABLE `bd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `cd`
 --
 ALTER TABLE `cd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `livre`
 --
 ALTER TABLE `livre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `ouvrage`
 --
 ALTER TABLE `ouvrage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --

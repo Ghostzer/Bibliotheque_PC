@@ -5,7 +5,7 @@
 
     <ul>
     {% for reservation in reservations %}
-        <li>{{ reservation.ouvrage.titre }} - réservé le {{ reservation.date|date('d/m/Y') }} - par {{ reservation.utilisateur.username }} | <a href="{{ path('ouvrage_ajoutemprunt', { 'id': reservation.ouvrage.id }) }}">Emprunter</a></li>
+        <li>{{ reservation.ouvrage.titre }} - <i>réservé le {{ reservation.date|date('d/m/Y') }} par {{ reservation.utilisateur.username }}</i> | <a href="{{ path('ouvrage_ajoutemprunt', { 'id': reservation.id }) }}">Emprunter</a></li>
     {% endfor %}
 
     </ul>

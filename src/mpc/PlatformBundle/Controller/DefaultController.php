@@ -15,11 +15,8 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'DESC']); //trie par date
-        
         $livres = $em->getRepository('mpcPlatformBundle:Livre')->findBy([], ['date' => 'DESC']); //trie par date
         $cds = $em->getRepository('mpcPlatformBundle:Cd')->findBy([], ['date' => 'DESC']); //trie par date
-        
-
 
         return $this->render('mpcPlatformBundle:Default:index.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
         ));
@@ -54,7 +51,7 @@ class DefaultController extends Controller {
 
         $reservations = $em->getRepository('mpcPlatformBundle:Reservation')->findByUtilisateur($this->getUser()); // La fonction findByX permets la recherche par utilisateur avec l'utilisateur actuel dans la table Reservation
 
-        return $this->render('mpcPlatformBundle:Default:mes_reservations.html.twig', array('reservations' => $reservations,
+        return $this->render('mpcPlatformBundle:Default:mes_reservations.html.twig', array('reservations' => $reservations
         ));
     }
 
@@ -66,8 +63,8 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:liste_reservations.html.twig', array('reservations' => $reservations
         ));
     }
-    
-        public function mesEmpruntsAction() {
+
+    public function mesEmpruntsAction() {
         $em = $this->getDoctrine()->getManager();
 
         $emprunts = $em->getRepository('mpcPlatformBundle:Emprunt')->findByUtilisateur($this->getUser()); // La fonction findByX permets la recherche par utilisateur avec l'utilisateur actuel dans la table Reservation
@@ -75,8 +72,6 @@ class DefaultController extends Controller {
 
         return $this->render('mpcPlatformBundle:Default:mes_emprunts.html.twig', array('emprunts' => $emprunts
         ));
-        
-        
     }
 
     public function ajoutEmpruntAction(Request $request) {
@@ -85,35 +80,34 @@ class DefaultController extends Controller {
 
         $id_select = $request->get('id');
         
+
         $date = new \DateTime();
-        
+
         $datetoday = new \DateTime();
-        $currentuser = $this->getUser();
         $dateInterval = new \DateInterval("P15D"); // on définit 15 jours d'interval pour l'emprunt...
         $dateretour = $datetoday->add($dateInterval); // ... et on l'ajoute à la date d'aujourd'hui pour le calcul
 
-        $objet = $em->getRepository('mpcPlatformBundle:Ouvrage')->find($id_select);
+        $objet = $em->getRepository('mpcPlatformBundle:Reservation')->findOneBy(array('id' => $id_select)); // on recherche l'objet qui a pour id celui selectionné, par exemple si l'id est 76, on obtient son id/date/ouvrage_id/utilisateur_id et pas seulement l'id
 
-        $emprunt = new Emprunt; 
+        $emprunt = new Emprunt;
 
-        $emprunt->setOuvrage($objet);
-        $emprunt->SetdateEmprunt($date); 
-        $emprunt->setUtilisateur($currentuser);  // A modifier : ici il faut récupérer l'utilisateur qui emprunte, et non l'utilisateur en cours qui valide l'emprunt (admin donc)
+        $emprunt->setOuvrage($objet->getOuvrage()); // on récupère ouvrage_id de la table "reservation" et on le set, par rapport à la variable $objet
+        $emprunt->SetdateEmprunt($date);
+        $emprunt->setUtilisateur($objet->getUtilisateur());  // On récupère l'utilisateur de la table Reservation et on le set par rapport à la variable $objet
         $emprunt->setdateRetour($dateretour);
 
         $em->persist($emprunt);
-        
-//        $reservation = $em->getRepository('mpcPlatformBundle:Reservation')->findByOuvrage($id_select);
-//        $em->remove($reservation);
-//        
+
+        $reservation = $em->getRepository('mpcPlatformBundle:Reservation')->findOneBy(array('id' => $id_select));
+        $em->remove($reservation);
 
         $em->flush();
 
 
         return $this->render('mpcPlatformBundle:Default:ajout_emprunt_ok.html.twig');
     }
-    
-        public function listeEmpruntsAction() {
+
+    public function listeEmpruntsAction() {
         $em = $this->getDoctrine()->getManager();
         $datetoday = new \DateTime();
 
@@ -122,6 +116,5 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:liste_emprunts.html.twig', array('emprunts' => $emprunts, 'datetoday' => $datetoday
         ));
     }
-    
-    
+
 }

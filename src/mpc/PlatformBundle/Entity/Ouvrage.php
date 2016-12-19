@@ -34,6 +34,13 @@ class Ouvrage
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+         /**
+     * @var string
+     *
+     * @ORM\Column(name="cover", type="string", length=250, nullable=false)
+     */
+    private $cover;
 
 
 
@@ -93,5 +100,29 @@ class Ouvrage
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     *
+     * @return Ouvrage
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }
