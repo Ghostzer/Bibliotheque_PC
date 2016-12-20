@@ -28,8 +28,8 @@ ouvrage_listeEmprunts:
     
 evenements:
     path:    /evenements
-    defaults: { _controller: mpcPlatformBundle:Default:voirEvenement }
+    defaults: { _controller: mpcPlatformBundle:Default:indexEvenement }
     
-evenementId:
-    path:    /evenements?id={id}
-    defaults: { _controller: mpcPlatformBundle:Default:voirEvenement }
+all_evenements:
+    path:    /allevents
+    defaults: { _controller: mpcPlatformBundle:Default:allEvenements}

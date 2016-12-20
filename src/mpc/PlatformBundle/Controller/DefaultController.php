@@ -8,6 +8,7 @@ use mpc\PlatformBundle\Entity\Reservation;
 use mpc\PlatformBundle\Entity\Emprunt;
 use mpc\PlatformBundle\Entity\Utilisateurs;
 use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller {
 
@@ -117,15 +118,19 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function voirEvenementAction(Request $request) {
+    public function indexEvenementAction() {
 
-        $em = $this->getDoctrine()->getManager();
+        return $this->render('mpcPlatformBundle:Default:evenements.html.twig');
+    }
 
-        $id_select = $request->get('id');
-        $objets = $em->getRepository('mpcPlatformBundle:evenements')->findOneBy(array('id' => $id_select));
+    public function allEvenementsAction() {
+        
+                $em = $this->getDoctrine()->getManager();
 
-        return $this->render('mpcPlatformBundle:Default:evenements.html.twig', array('objets' => $objets, 'id_select' => $id_select
-        ));
+        $events = $em->getRepository('mpcPlatformBundle:evenements')->findAll();
+
+        return $this->render('mpcPlatformBundle:Default:allevents.html.twig', array('events' => $events
+                ));
     }
 
 }

@@ -7,6 +7,5 @@
     {% for emprunt in emprunts %}
         <li>{{ emprunt.ouvrage.titre }} à été réservé le {{ emprunt.dateEmprunt|date('d/m/Y') }} - Retour avant le {{ emprunt.dateRetour|date('d/m/Y') }} - par {{ emprunt.utilisateur.username }}</li>
     {% endfor %}
-
     </ul>
 {% endblock %}

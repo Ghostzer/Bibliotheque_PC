@@ -84,6 +84,15 @@ a:hover {
     position: absolute;
 }
 
+.titre_event {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.date_event {
+    font-size: 10px;
+}
+
 /* Modal background */
 .modal {
     display: none;
