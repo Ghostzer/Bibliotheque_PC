@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 19, 2016 at 09:04 PM
+-- Generation Time: Dec 20, 2016 at 04:57 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -64,7 +64,7 @@ CREATE TABLE `cd` (
 --
 
 INSERT INTO `cd` (`id`, `ouvrage_id`, `artist`, `genre`, `date`, `cover`) VALUES
-(2, 3, 'Metallica', 'Heavy metal', '2016-11-03', 'covers/metallica.jpg'),
+(2, 3, 'Metallica', 'Trash metal', '2016-11-03', 'covers/metallica.jpg'),
 (3, 6, 'Nero', 'Drum and Bass', '2016-12-16', 'covers/nero.jpg'),
 (4, 10, 'Astrix', 'GOA', '2016-12-19', 'covers/astrix.jpg');
 
@@ -180,7 +180,8 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `date`, `ouvrage_id`, `utilisateur_id`) VALUES
-(82, '2016-12-19', 8, 6);
+(82, '2016-12-19', 8, 6),
+(99, '2016-12-20', 8, 6);
 
 -- --------------------------------------------------------
 
@@ -210,11 +211,9 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-19 12:12:46', NULL, NULL, 'a:0:{}'),
-(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-19 14:09:02', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
-(4, NULL, NULL, 'azerty', 'azerty', 'hello@hello.hello', 'hello@hello.hello', 1, NULL, '$2y$13$2GcKXm0RwGMkCXcEmnA5Ses8iutDz8k4A3WDJsbBrGx4VguMHgeei', '2016-12-15 09:36:00', NULL, NULL, 'a:0:{}'),
-(5, NULL, NULL, 'aaa', 'aaa', 'a@a.a', 'a@a.a', 1, NULL, '$2y$13$vVI6EI9vmxPGjwbPXnIq.e56FrjStuuVR166y2TKKyLkHb9bvW8eK', '2016-12-15 09:43:56', NULL, NULL, 'a:0:{}'),
-(6, NULL, NULL, 'Jérome', 'jérome', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$6zSnK18zppp2dO6e06qU8e0/yrAOcAX/NNiiu2.dhgTAdZP7fJO6q', '2016-12-19 14:08:35', NULL, NULL, 'a:0:{}');
+(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-20 08:22:08', NULL, NULL, 'a:0:{}'),
+(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-20 14:26:42', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
+(6, NULL, NULL, 'Jérome', 'jérome', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$6zSnK18zppp2dO6e06qU8e0/yrAOcAX/NNiiu2.dhgTAdZP7fJO6q', '2016-12-20 15:50:09', NULL, NULL, 'a:0:{}');
 
 --
 -- Indexes for dumped tables
@@ -316,7 +315,7 @@ ALTER TABLE `ouvrage`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
