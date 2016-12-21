@@ -1,7 +1,7 @@
 body {
     font-family:Sans-serif;
     font-size:100%;
-    background:#DDDDDD;
+    background:#EDEEEF;
     margin:0;
     background-repeat: no-repeat;
     background-size: 80%;
@@ -19,11 +19,6 @@ body {
 ul {
     list-style: none; 
     margin: 0;
-}
-
-.listeindex {
-    display: table-cell;
-    text-align: center;
 }
 
 .listecontent {
@@ -47,27 +42,12 @@ a:link {
 }
 
 li a {
-    color: #000;
+    color: #FFBC10;
 }
 
 a:hover {
-    color:#000;
-    
-}
+    color:#333333;
 
-#content {
-    max-width: 80%;
-    margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    background-color: #fff;
-    font-size: 14px;
-}
-
-#main {
-    width: 100%;
-    background-color: #fff;
 }
 
 .add {
@@ -115,6 +95,8 @@ ul.topnav li a:hover {background-color: #FFBC10;}
 
 ul.topnav li.icon {display: none;}
 
+/* START Media Queries for navbar */
+
 @media screen and (max-width:765px) {
     ul.topnav li:not(:first-child) {display: none;}
     ul.topnav li.icon {
@@ -140,37 +122,59 @@ ul.topnav li.icon {display: none;}
     }
 }
 
-@media screen and (max-width:765px) {
-    .coverbd {
-        height: 110px;
-        width: 80px;
-        font-size: 10px;
-    }
+/* END Media Queries for navbar */
 
-    .coverlivre {
-        height: 125px;
-        width: 80px;
-        font-size: 10px;
-    }
-
-    .covercd {
-        height: 80px;
-        width: 80px;
-        font-size: 10px;
-    }
-
-    .add {
-        display:none
-    }
-
-#content {
-    max-width: 100%;
-    margin-top: auto;
+.content {
+    max-width: 80%;
+    margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
     padding: auto;
-    background-color: #fff;
-    font-size: 14px;
+    background-color: #EDEEEF;
+    font-size: 14px; 
 }
 
+.flex-container{
+    max-width: 70%;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background-color: #EDEEEF;
+    font-size: 14px;
+    display: flex;
+}
+
+.detail {
+    width: 80%;
+    padding-left: 2%;
+}
+.divcover img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+.divcover {
+    width: 20%;
+    min-width: 110px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3 {
+    margin-bottom: 1px;
+}
+
+
+#gauche {
+    background-color: #fff;
+    padding: 3%;
+}
+
+@media screen and (max-width:360px) {
+    .detail {
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
