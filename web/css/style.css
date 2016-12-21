@@ -1,0 +1,207 @@
+body {
+    font-family:Sans-serif;
+    font-size:100%;
+    background:#DDDDDD;
+    margin:0;
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+
+
+#header {
+    background-color: #46423D;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    font-size: 12px;
+}
+
+ul {
+    list-style: none; 
+    margin: 0;
+}
+
+.listeindex {
+    display: table-cell;
+    text-align: center;
+}
+
+.listecontent {
+    padding:10px;
+}
+
+.ma_ul li {
+    display: table-cell;
+    padding: 10px;
+    text-align: right;
+}
+
+.confirm {
+    background-color: #7AD45F;
+    padding: 10px;
+    width: 22em;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+li a {
+    color: #000;
+}
+
+a:hover {
+    color:#000;
+    
+}
+
+#content {
+    max-width: 80%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+#main {
+    width: 100%;
+    background-color: #fff;
+}
+
+.add {
+    font-size: 10px;
+}
+
+.delshow {
+    top: 40%;
+    right: 10%;
+    position: absolute;
+}
+
+/* Modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Navbar Responsive */
+
+body {margin:0;}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.topnav li a:hover {background-color: #FFBC10;}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:765px) {
+    ul.topnav li:not(:first-child) {display: none;}
+    ul.topnav li.icon {
+        float: right;
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width:765px) {
+    ul.topnav.responsive {position: relative;}
+    ul.topnav.responsive li.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    ul.topnav.responsive li {
+        float: none;
+        display: inline;
+    }
+    ul.topnav.responsive li a {
+        display: block;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width:765px) {
+    .coverbd {
+        height: 110px;
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .coverlivre {
+        height: 125px;
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .covercd {
+        height: 80px;
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .add {
+        display:none
+    }
+
+#content {
+    max-width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: auto;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+}
