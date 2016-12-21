@@ -12,14 +12,16 @@
 
         <ul class="topnav" id="navMenu">
             <li><a href="/">Accueil</a></li>
+            <li><a href="/nouveautes">Nouveautés</a></li>
+            <li><a href="/nouveautes">Catalogue</a></li>
             <li><a href="evenements">Evenements</a></li>
             <li class="icon">
                 <a href="javascript:void(0);" onclick="functionMenu()">&#9776;</a>
             </li>
             {% if is_granted("ROLE_USER") %}
-                <li style="float:right"><a href="{{ path('fos_user_security_logout') }}"><span></span>Se déconnecter</a></li>
+                <li class="loginright"><a href="{{ path('fos_user_security_logout') }}"><span>Se déconnecter</span></a></li>
                         {% else %}
-                <li style="float:right"><a href="#" id="myBtn"><span></span>Se connecter<span></span></a></li>
+                <li class="loginright"><a href="/login"><span>Se connecter</span></a></li>
                         {% endif %}
         </ul>
         <ul class="topnav" id="navCompte">
@@ -68,5 +70,9 @@
                 }
             }
     </script>
+    
+    <footer><p class="textefooter">Médiathèque de Pleyber-Christ | Porz Ruz 29410 Pleyber-Christ</p></footer>
+    
+    
 </body>
 </html>

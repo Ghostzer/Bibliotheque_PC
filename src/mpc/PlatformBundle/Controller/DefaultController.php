@@ -13,13 +13,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class DefaultController extends Controller {
 
     public function indexAction() {
+
+        return $this->render('mpcPlatformBundle:Default:index.html.twig');
+    }
+    
+    
+        public function nouveautesAction() {
         $em = $this->getDoctrine()->getManager();
 
         $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'DESC']); //trie par date
         $livres = $em->getRepository('mpcPlatformBundle:Livre')->findBy([], ['date' => 'DESC']); //trie par date
         $cds = $em->getRepository('mpcPlatformBundle:Cd')->findBy([], ['date' => 'DESC']); //trie par date
 
-        return $this->render('mpcPlatformBundle:Default:index.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
+        return $this->render('mpcPlatformBundle:Default:nouveautes.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
         ));
     }
 
@@ -106,6 +112,21 @@ class DefaultController extends Controller {
 
 
         return $this->render('mpcPlatformBundle:Default:ajout_emprunt_ok.html.twig');
+    }
+    
+        public function delReservationAction(Request $request) {
+            
+            $id_select = $request->get('id');
+        
+                $em = $this->getDoctrine()->getManager();
+
+        $delreservation = $em->getRepository('mpcPlatformBundle:Reservation')->findOneBy(array('id' => $id_select));
+        $em->remove($delreservation);
+        
+        $em->flush();
+
+        return $this->render('mpcPlatformBundle:Default:del_reservation_ok.html.twig'
+                );
     }
 
     public function listeEmpruntsAction() {

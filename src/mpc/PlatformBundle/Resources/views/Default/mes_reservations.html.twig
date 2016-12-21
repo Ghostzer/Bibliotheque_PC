@@ -5,7 +5,7 @@
 
     <ul>
     {% for reservation in reservations %}
-    <li>{{ reservation.ouvrage.titre }} - le {{ reservation.date|date('d/m/Y') }}</li>
+    <li>{{ reservation.ouvrage.titre }} - le {{ reservation.date|date('d/m/Y') }} | <a href="{{ path('del_reservation', { 'id': reservation.id }) }}">Annuler ma réservation</a>
     {% endfor %}
     </ul>
 {% endblock %}

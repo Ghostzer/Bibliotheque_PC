@@ -2,6 +2,10 @@ mpc_platform_homepage:
     path:     /
     defaults: { _controller: mpcPlatformBundle:Default:index }
     
+ouvrage_nouveautes:
+    path:    /nouveautes
+    defaults: { _controller: mpcPlatformBundle:Default:nouveautes }
+    
 ouvrage_ajoutreservations:
     path:    /ajoutreservation
     defaults: { _controller: mpcPlatformBundle:Default:ajoutReservation }
@@ -33,3 +37,7 @@ evenements:
 all_evenements:
     path:    /allevents
     defaults: { _controller: mpcPlatformBundle:Default:allEvenements}
+    
+del_reservation:
+    path:    /del-reservation
+    defaults: { _controller: mpcPlatformBundle:Default:delReservation }
