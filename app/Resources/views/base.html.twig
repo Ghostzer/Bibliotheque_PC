@@ -5,47 +5,47 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Mediathèque de Pleyber Christ{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
-<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-</head>
-<body>
-    <div id="header">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="header">
 
-        <ul class="topnav" id="navMenu">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/nouveautes">Nouveautés</a></li>
-            <li><a href="/nouveautes">Catalogue</a></li>
-            <li><a href="evenements">Evenements</a></li>
-            <li class="icon">
-                <a href="javascript:void(0);" onclick="functionMenu()">&#9776;</a>
-            </li>
-            {% if is_granted("ROLE_USER") %}
-                <li class="loginright"><a href="{{ path('fos_user_security_logout') }}"><span>Se déconnecter</span></a></li>
-                        {% else %}
-                <li class="loginright"><a href="/login"><span>Se connecter</span></a></li>
-                        {% endif %}
-        </ul>
-        <ul class="topnav" id="navCompte">
-            {% if is_granted("ROLE_USER") %}
-                <li><a href="/profile">Mon profil</a></li>
-                <li><a href="mes-reservations">Mes réservations</a></li>
-                <li><a href="mes-emprunts">Mes emprunts en cours</a></li>
+            <ul class="topnav" id="navMenu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/nouveautes">Nouveautés</a></li>
+                <li><a href="/catalogue">Catalogue</a></li>
+                <li><a href="/evenements">Evenements</a></li>
                 <li class="icon">
-                    <a href="javascript:void(0);" onclick="functionCompte()">&#9921;</a>
-                </li>{% else %}
-            {% endif %}
-            {% if is_granted("ROLE_ADMIN") %}
-                <li><a href="liste-reservations">Liste des réservations</a></li>
-                <li><a href="liste-emprunts">Liste emprunts</a></li>
-                {% else %}
+                    <a href="javascript:void(0);" onclick="functionMenu()">&#9776;</a>
+                </li>
+                {% if is_granted("ROLE_USER") %}
+                    <li class="loginright"><a href="{{ path('fos_user_security_logout') }}"><span>Se déconnecter</span></a></li>
+                    {% else %}
+                    <li class="loginright"><a href="/login"><span>Se connecter</span></a></li>
+                    {% endif %}
+            </ul>
+            <ul class="topnav" id="navCompte">
+                {% if is_granted("ROLE_USER") %}
+                    <li><a href="/profile">Mon profil</a></li>
+                    <li><a href="/mes-reservations">Mes réservations</a></li>
+                    <li><a href="/mes-emprunts">Mes emprunts en cours</a></li>
+                    <li class="icon">
+                        <a href="javascript:void(0);" onclick="functionCompte()">&#9921;</a>
+                    </li>{% else %}
                 {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li><a href="/liste-reservations">Liste des réservations</a></li>
+                    <li><a href="/liste-emprunts">Liste emprunts</a></li>
+                    {% else %}
+                    {% endif %}
+            </ul>
         </ul>
-    </ul>
-</div>
+    </div>
 
-        <div class="content">
-    <div id="gauche">
-    {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+    <div class="content">
+        <div id="gauche">
+        {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
 </div>
 <div id="droite"></div>
 </div>
@@ -59,20 +59,20 @@
             x.className = "topnav";
         }
     }
-    </script>
+</script>
 <script>
-            function functionCompte() {
-                var x = document.getElementById("navCompte");
-                if (x.className === "topnav") {
-                    x.className += " responsive";
-                } else {
-                    x.className = "topnav";
-                }
-            }
-    </script>
-    
-    <footer><p class="textefooter">Médiathèque de Pleyber-Christ | Porz Ruz 29410 Pleyber-Christ</p></footer>
-    
-    
+    function functionCompte() {
+        var x = document.getElementById("navCompte");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+<footer><p class="textefooter">Médiathèque de Pleyber-Christ | Porz Ruz 29410 Pleyber-Christ</p></footer>
+
+
 </body>
 </html>

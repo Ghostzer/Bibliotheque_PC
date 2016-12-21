@@ -1,11 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h4>Vous avez actuellement en votre possession : </h4>
-
-    <ul>
-    {% for emprunt in emprunts %}
-    <li>{{ emprunt.ouvrage.titre }} Du {{ emprunt.dateEmprunt|date('d/m/Y') }} au {{ emprunt.dateRetour|date('d/m/Y') }}</li>
-    {% endfor %}
-    </ul>
+    {% if not emprunts %}
+        <p>Vous n'avez aucun emprunt.</p>
+        N'hésitez pas à consulter les <a href="/nouveautes">nouveautés</a> afin de réserver !
+    {% else %}
+        <h4>Vous avez actuellement en votre possession : </h4>
+        {% for emprunt in emprunts %}
+            {{ emprunt.ouvrage.titre }} Du {{ emprunt.dateEmprunt|date('d/m/Y') }} au {{ emprunt.dateRetour|date('d/m/Y') }}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

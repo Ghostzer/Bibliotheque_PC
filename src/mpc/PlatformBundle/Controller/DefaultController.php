@@ -16,9 +16,8 @@ class DefaultController extends Controller {
 
         return $this->render('mpcPlatformBundle:Default:index.html.twig');
     }
-    
-    
-        public function nouveautesAction() {
+
+    public function nouveautesAction() {
         $em = $this->getDoctrine()->getManager();
 
         $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'DESC']); //trie par date
@@ -113,20 +112,35 @@ class DefaultController extends Controller {
 
         return $this->render('mpcPlatformBundle:Default:ajout_emprunt_ok.html.twig');
     }
-    
-        public function delReservationAction(Request $request) {
-            
-            $id_select = $request->get('id');
-        
-                $em = $this->getDoctrine()->getManager();
+
+    public function delReservationAction(Request $request) {
+
+        $id_select = $request->get('id');
+
+        $em = $this->getDoctrine()->getManager();
 
         $delreservation = $em->getRepository('mpcPlatformBundle:Reservation')->findOneBy(array('id' => $id_select));
         $em->remove($delreservation);
-        
+
         $em->flush();
 
         return $this->render('mpcPlatformBundle:Default:del_reservation_ok.html.twig'
-                );
+        );
+    }
+
+    public function delEmpruntAction(Request $request) {
+
+        $id_select = $request->get('id');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $delemprunt = $em->getRepository('mpcPlatformBundle:Emprunt')->findOneBy(array('id' => $id_select));
+        $em->remove($delemprunt);
+
+        $em->flush();
+
+        return $this->render('mpcPlatformBundle:Default:del_emprunt_ok.html.twig'
+        );
     }
 
     public function listeEmpruntsAction() {
@@ -145,13 +159,24 @@ class DefaultController extends Controller {
     }
 
     public function allEvenementsAction() {
-        
-                $em = $this->getDoctrine()->getManager();
+
+        $em = $this->getDoctrine()->getManager();
 
         $events = $em->getRepository('mpcPlatformBundle:evenements')->findAll();
 
         return $this->render('mpcPlatformBundle:Default:allevents.html.twig', array('events' => $events
-                ));
+        ));
+    }
+    
+        public function catalogueAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $bds = $em->getRepository('mpcPlatformBundle:Bd')->findAll();
+        $livres = $em->getRepository('mpcPlatformBundle:Livre')->findAll();
+        $cds = $em->getRepository('mpcPlatformBundle:Cd')->findAll();
+
+        return $this->render('mpcPlatformBundle:Default:catalogue.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
+        ));
     }
 
 }

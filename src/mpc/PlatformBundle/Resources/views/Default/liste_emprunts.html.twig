@@ -3,9 +3,13 @@
 {% block body %}
     <h4>Liste de tous les emprunts : </h4>
 
-    <ul>
+    <div>
     {% for emprunt in emprunts %}
-        <li>{{ emprunt.ouvrage.titre }} à été réservé le {{ emprunt.dateEmprunt|date('d/m/Y') }} - Retour avant le {{ emprunt.dateRetour|date('d/m/Y') }} - par {{ emprunt.utilisateur.username }}</li>
+        <i>{{ emprunt.ouvrage.titre }}</i> par <b>{{ emprunt.utilisateur.username }}</b> <br>
+        à été réservé le {{ emprunt.dateEmprunt|date('d/m/Y') }} - Retour avant le {{ emprunt.dateRetour|date('d/m/Y') }}<br>
+        <a href="{{ path('del_emprunt', { 'id': emprunt.id }) }}">Ouvrage restitué</a>
+        <br>
     {% endfor %}
-    </ul>
+    </div>
+    
 {% endblock %}

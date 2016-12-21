@@ -1,7 +1,11 @@
-<ul>
-    {% for event in events %}
-        <li><span class="titre_event">{{ event.titre }}</span><span class="date_event"> le {{ event.date|date('d/m/Y') }}</span></li>
-        <li>{{ event.detail }}</li>
-        <br>
+{% if not events %}
+    <p>Il n'y a actuellement aucun événement en cours.</p>
+{% else %}
+    <ul>
+        {% for event in events %}
+            <li><h2><span class="titre_event">{{ event.titre }}</span></h2><span class="date_event"> le {{ event.date|date('d/m/Y') }}</span></li>
+            <li>{{ event.detail }}</li>
+            <br>
         {%endfor %}
-</ul>
+    </ul>
+{% endif %}

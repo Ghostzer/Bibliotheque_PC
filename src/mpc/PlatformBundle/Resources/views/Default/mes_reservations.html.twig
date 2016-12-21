@@ -1,11 +1,20 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h4>Vous avez réservé : </h4>
+    {% if not reservations %}
+        <p>Vous n'avez aucunes réservations.</p>
+        N'hésitez pas à consulter les <a href="/nouveautes">nouveautés</a> !
+        {% else %}
+            <h4>Vous avez réservé : </h4>
 
-    <ul>
-    {% for reservation in reservations %}
-    <li>{{ reservation.ouvrage.titre }} - le {{ reservation.date|date('d/m/Y') }} | <a href="{{ path('del_reservation', { 'id': reservation.id }) }}">Annuler ma réservation</a>
-    {% endfor %}
-    </ul>
-{% endblock %}
+            {% for reservation in reservations %}
+                <div>
+                    {{ reservation.ouvrage.titre }} - le {{ reservation.date|date('d/m/Y') }}
+                    <div>
+                        <a href="{{ path('del_reservation', { 'id': reservation.id }) }}">Annuler ma réservation</a>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
