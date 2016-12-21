@@ -178,5 +178,5 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:catalogue.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
         ));
     }
-
+    
 }
