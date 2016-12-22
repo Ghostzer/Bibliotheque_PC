@@ -4,4 +4,4 @@ Git clone this repo
 
 * Go to /db directory
 * Create database "mpc" and import mpc.sql file
-* Install dependencies : composer install and configure your parameters
+* Install dependencies : <composer install> and configure your parameters
