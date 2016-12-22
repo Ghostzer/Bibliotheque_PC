@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2016 at 07:24 AM
+-- Generation Time: Dec 22, 2016 at 03:31 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -111,11 +111,21 @@ INSERT INTO `evenements` (`id`, `titre`, `detail`, `date`) VALUES
 
 CREATE TABLE `historique` (
   `id` int(11) NOT NULL,
-  `ouvrage_id` int(11) NOT NULL,
+  `ouvrage_id` int(11) DEFAULT NULL,
   `date_retour` datetime NOT NULL,
   `date_emprunt` datetime NOT NULL,
-  `utilisateur_id` int(11) NOT NULL
+  `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `historique`
+--
+
+INSERT INTO `historique` (`id`, `ouvrage_id`, `date_retour`, `date_emprunt`, `utilisateur_id`) VALUES
+(4, 4, '2016-11-22 00:00:00', '2016-11-08 00:00:00', 7),
+(5, 9, '2016-10-19 00:00:00', '2016-10-05 00:00:00', 8),
+(6, 6, '2016-11-19 00:00:00', '2016-11-05 00:00:00', 7),
+(7, 10, '2016-12-25 00:00:00', '2016-12-11 00:00:00', 8);
 
 -- --------------------------------------------------------
 
@@ -182,6 +192,15 @@ CREATE TABLE `reservation` (
   `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `date`, `ouvrage_id`, `utilisateur_id`) VALUES
+(16, '2016-12-22', 8, 7),
+(17, '2016-12-22', 9, 8),
+(18, '2016-12-22', 7, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -210,11 +229,9 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-21 17:41:56', NULL, NULL, 'a:0:{}'),
-(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-21 18:14:10', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
-(4, NULL, NULL, 'azerty', 'azerty', 'hello@hello.hello', 'hello@hello.hello', 1, NULL, '$2y$13$2GcKXm0RwGMkCXcEmnA5Ses8iutDz8k4A3WDJsbBrGx4VguMHgeei', '2016-12-15 09:36:00', NULL, NULL, 'a:0:{}'),
-(5, NULL, NULL, 'aaa', 'aaa', 'a@a.a', 'a@a.a', 1, NULL, '$2y$13$vVI6EI9vmxPGjwbPXnIq.e56FrjStuuVR166y2TKKyLkHb9bvW8eK', '2016-12-15 09:43:56', NULL, NULL, 'a:0:{}'),
-(6, NULL, NULL, 'Jérome', 'jérome', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$6zSnK18zppp2dO6e06qU8e0/yrAOcAX/NNiiu2.dhgTAdZP7fJO6q', '2016-12-21 20:23:43', NULL, NULL, 'a:0:{}');
+(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-22 14:29:43', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
+(7, NULL, NULL, 'alice', 'alice', 'alice@alice.alice', 'alice@alice.alice', 1, NULL, '$2y$13$fda4JkwpJHYSNB5mTOwD0uVxKhrkdXZBEnloCxqvoEQh4WapqHmVq', '2016-12-22 13:54:58', NULL, NULL, 'a:0:{}'),
+(8, NULL, NULL, 'bob', 'bob', 'bob@bob.bob', 'bob@bob.bob', 1, NULL, '$2y$13$jQUoEYDEpAIQ3VQUGC8YD.oaQxittas0xIA/lpMiWR0LDkLTUdW.y', '2016-12-22 14:28:37', NULL, NULL, 'a:0:{}');
 
 --
 -- Indexes for dumped tables
@@ -252,7 +269,9 @@ ALTER TABLE `evenements`
 -- Indexes for table `historique`
 --
 ALTER TABLE `historique`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ouvrage_id` (`ouvrage_id`),
+  ADD KEY `IDX_EDBFD5ECFB88E14F` (`utilisateur_id`);
 
 --
 -- Indexes for table `livre`
@@ -302,7 +321,7 @@ ALTER TABLE `cd`
 -- AUTO_INCREMENT for table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `evenements`
 --
@@ -312,7 +331,7 @@ ALTER TABLE `evenements`
 -- AUTO_INCREMENT for table `historique`
 --
 ALTER TABLE `historique`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `livre`
 --
@@ -327,12 +346,12 @@ ALTER TABLE `ouvrage`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --
@@ -355,6 +374,13 @@ ALTER TABLE `cd`
 ALTER TABLE `emprunt`
   ADD CONSTRAINT `FK_364071D715D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`),
   ADD CONSTRAINT `FK_364071D7FB88E14F` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`);
+
+--
+-- Constraints for table `historique`
+--
+ALTER TABLE `historique`
+  ADD CONSTRAINT `FK_EDBFD5EC15D884B5` FOREIGN KEY (`ouvrage_id`) REFERENCES `ouvrage` (`id`),
+  ADD CONSTRAINT `FK_EDBFD5ECFB88E14F` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`);
 
 --
 -- Constraints for table `livre`
