@@ -24,7 +24,7 @@ class Historique
     /**
      * @var \mpc\PlatformBundle\Entity\Ouvrage
      *
-     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Ouvrage", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="mpc\PlatformBundle\Entity\Ouvrage")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ouvrage_id", referencedColumnName="id")
      * })
@@ -162,3 +162,4 @@ class Historique
         return $this->utilisateurId;
     }
 }
+

@@ -2,7 +2,9 @@
 
 {% block body %}
     <h4>Liste de tous les emprunts : </h4>
-
+{% if not emprunts %}
+        <p>Aucun emprunt en cours.</p>
+        {% else %}
     <div>
     {% for emprunt in emprunts %}
         <i>{{ emprunt.ouvrage.titre }}</i> par <b>{{ emprunt.utilisateur.username }}</b> <br>
@@ -11,5 +13,6 @@
         <br>
     {% endfor %}
     </div>
+        {% endif %}
     
 {% endblock %}

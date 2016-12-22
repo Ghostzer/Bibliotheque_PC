@@ -29,4 +29,10 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ajoutreservation, role: ROLE_USER }
         - { path: ^/mes-reservations, role: ROLE_USER }
+        - { path: ^/mes-emprunts, role: ROLE_USER }
         - { path: ^/liste-reservations, role: ROLE_ADMIN }
+        - { path: ^/liste-emprunts, role: ROLE_ADMIN }
+        - { path: ^/historique, role: ROLE_ADMIN }
+        - { path: ^/del-reservation, role: ROLE_USER }
+        - { path: ^/del-emprunt, role: ROLE_ADMIN }
+        - { path: ^/historique, role: ROLE_ADMIN }

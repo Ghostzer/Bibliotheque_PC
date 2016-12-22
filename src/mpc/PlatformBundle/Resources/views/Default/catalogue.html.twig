@@ -1,51 +1,89 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div>
-        <h3>Catalogue : </h3>
-            {% for bd in bds %}
-                    <div class="flex-container">
-                        <div class="divcover">
-                            <a href="{{ path('ouvrage_show', { 'id': bd.ouvrage.id }) }}"><img src="{{ bd.cover }}" height="220" width="160"  class="coverbd" >
-                        </div>
-                        <div class="detail">
-                            <h3>{{ bd.ouvrage.titre }}</a></h3>
-                            <span class="add">Ajouté le {{ bd.date|date('d/m/Y') }}</span>
-                            <p>Auteur : {{ bd.auteur }}</p>
-                            <p>Genre : {{ bd.genre }}</p><br>
-                            <p class="btnReserver"><a href="{{ path('ouvrage_ajoutreservations', { 'id': bd.ouvrage.id }) }}">Réserver</a></p>
-                        </div>
+    <h3>Catalogue : </h3><br>
+    {% for bd in bds %}
+        <div class="flex-container">
+            <div class="divcover">
+                <a href="{{ path('ouvrage_show', { 'id': bd.ouvrage.id }) }}"><img src="{{ bd.cover }}" height="220" width="160"  class="coverbd" >
                     </div>
+                    <div class="detail">
+                        <h3>{{ bd.ouvrage.titre }}</a></h3>
+                        <span class="add">Ajouté le {{ bd.date|date('d/m/Y') }}</span>
+                        <p>Auteur : {{ bd.auteur }}</p>
+                        <p>Genre : {{ bd.genre }}</p><br>
 
-            {% endfor %}
+                        {% set isResa = false %}{# Attribution d'une variable "isResa" en False #}
+                        {% for resa in resas %} {#Boucle resa, on cherche dans la table reservation si elle n'existe pas#}
+                            {% if resa.ouvrage == bd.ouvrage %} {#si la réservation de l'ouvrage est égale à l'ouvrage de BD donc existante#}
+                                <p>Cette BD n'est pas disponible</p>
+                                {% set isResa = true %} {# On passe la variable à True #}
+                            {% endif %}
+                        {% endfor %}
+                        {% if not isResa %} {# Si pas réserver #}
+                            {% if not is_granted("ROLE_USER") %}
+                                <p><b><a href="/login">Connectez-vous</a></b> pour réserver</p>
+                            {% else %}
+                                <p class="btnReserver"><a href="{{ path('ouvrage_ajoutreservations', { 'id': bd.ouvrage.id }) }}">Réserver</a></p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+            </div>
 
-    </div>
+        {% endfor %}
+
         {% for livre in livres %}
-                    <div class="flex-container">
-                        <div class="divcover">
-                            <a href="{{ path('ouvrage_show', { 'id': livre.ouvrage.id }) }}"><img src="{{ livre.cover }}" height="220" width="160"  class="coverlivre" >
+            <div class="flex-container">
+                <div class="divcover">
+                    <a href="{{ path('ouvrage_show', { 'id': livre.ouvrage.id }) }}"><img src="{{ livre.cover }}" height="220" width="160"  class="coverlivre" >
                         </div>
                         <div class="detail">
                             <h3>{{ livre.ouvrage.titre }}</a></h3>
                             <span class="add">Ajouté le {{ livre.date|date('d/m/Y') }}</span>
                             <p>Auteur : {{ livre.auteur }}</p>
                             <p>Genre : {{ livre.genre }}</p><br>
-                            <p class="btnReserver"><a href="{{ path('ouvrage_ajoutreservations', { 'id': livre.ouvrage.id }) }}">Réserver</a></p>
+                            {% set isResa = false %}{# Attribution d'une variable "isResa" en False #}
+                            {% for resa in resas %} {#Boucle resa, on cherche dans la table reservation si elle n'existe pas#}
+                                {% if resa.ouvrage == livre.ouvrage %} {#si la réservation de l'ouvrage est égale à l'ouvrage de BD donc existante#}
+                                    <p>Ce livre n'est pas disponible</p>
+                                    {% set isResa = true %} {# On passe la variable à True #}
+                                {% endif %}
+                            {% endfor %}
+                            {% if not isResa %} {# Si pas réserver #}
+                                {% if not is_granted("ROLE_USER") %}
+                                    <p><b><a href="/login">Connectez-vous</a></b> pour réserver</p>
+                                {% else %}
+                                    <p class="btnReserver"><a href="{{ path('ouvrage_ajoutreservations', { 'id': livre.ouvrage.id }) }}">Réserver</a></p>
+                                {% endif %}
+                            {% endif %}
                         </div>
+                </div>
+            {% endfor %}
+            {% for cd in cds %}
+                <div class="flex-container">
+                    <div class="divcover">
+                        <a href="{{ path('ouvrage_show', { 'id': cd.ouvrage.id }) }}"><img src="{{ cd.cover }}" height="160" width="160"  class="covercd" >
+                            </div>
+                            <div class="detail">
+                                <h3>{{ cd.ouvrage.titre }}</a></h3>
+                                <span class="add">Ajouté le {{ cd.date|date('d/m/Y') }}</span>
+                                <p>Artiste : {{ cd.artist }}</p>
+                                <p>Genre : {{ cd.genre }}</p><br>
+                                {% set isResa = false %}{# Attribution d'une variable "isResa" en False #}
+                                {% for resa in resas %} {#Boucle resa, on cherche dans la table reservation si elle n'existe pas#}
+                                    {% if resa.ouvrage == cd.ouvrage %} {#si la réservation de l'ouvrage est égale à l'ouvrage de BD donc existante#}
+                                        <p>Ce CD n'est pas disponible</p>
+                                        {% set isResa = true %} {# On passe la variable à True #}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if not isResa %} {# Si pas réserver #}
+                                    {% if not is_granted("ROLE_USER") %}
+                                        <p><b><a href="/login">Connectez-vous</a></b> pour réserver</p>
+                                    {% else %}
+                                        <p class="btnReserver"><a href="{{ path('ouvrage_ajoutreservations', { 'id': cd.ouvrage.id }) }}">Réserver</a></p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
                     </div>
-        {% endfor %}
-        {% for cd in cds %}
-                    <div class="flex-container">
-                        <div class="divcover">
-                            <a href="{{ path('ouvrage_show', { 'id': cd.ouvrage.id }) }}"><img src="{{ cd.cover }}" height="160" width="160"  class="covercd" >
-                        </div>
-                        <div class="detail">
-                            <h3>{{ cd.ouvrage.titre }}</a></h3>
-                            <span class="add">Ajouté le {{ cd.date|date('d/m/Y') }}</span>
-                            <p>Artiste : {{ cd.artist }}</p>
-                            <p>Genre : {{ cd.genre }}</p><br>
-                            <p class="btnReserver"><a href="{{ path('ouvrage_ajoutreservations', { 'id': cd.ouvrage.id }) }}">Réserver</a></p>
-                        </div>
-                    </div>
-        {% endfor %}
-{% endblock %}
+                {% endfor %}
+            {% endblock %}

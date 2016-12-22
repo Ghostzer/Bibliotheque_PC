@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h2>Historique des emprunts :</h2><br>
+    {% for historique in historiques %}
+        <table>
+            <tr>
+                <td class="tbl_list_emprunt"><span class="hide">Titre :</span> {{ historique.ouvrageid.titre }}</td>
+                <td class="tbl_list_emprunt"><span class="hide">De :</span>{{ historique.dateEmprunt|date('d/m/y') }}</td>
+                <td class="tbl_list_emprunt"><span class="hide">au :</span>{{ historique.dateRetour|date('d/m/y') }}</td>
+                <td class="tbl_list_emprunt"><span class="hide">Utilisateur :</span>{{ historique.utilisateurId }}</td>
+            </tr>
+        </tbody>
+        <hr>
+    </table>
+
+{% endfor %}
+{% endblock %}

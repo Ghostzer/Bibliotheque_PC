@@ -49,3 +49,7 @@ del_emprunt:
 catalogue:
     path:    /catalogue
     defaults: { _controller: mpcPlatformBundle:Default:catalogue }
+    
+historique:
+    path:    /historique
+    defaults: { _controller: mpcPlatformBundle:Default:historique }

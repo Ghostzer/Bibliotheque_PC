@@ -37,7 +37,8 @@ ul {
 .confirm {
     background-color: #7AD45F;
     padding: 10px;
-    width: 22em;
+    max-width: 100%;
+    min-width: 50px;
 }
 
 a:link {
@@ -108,7 +109,7 @@ ul.topnav li a:hover {background-color: #FFBC10;}
 ul.topnav li.icon {display: none;}
 
 
-@media screen and (max-width:765px) {
+@media screen and (max-width:800px) {
     ul.topnav li:not(:first-child) {display: none;}
     ul.topnav li.icon {
         float: right;
@@ -116,7 +117,7 @@ ul.topnav li.icon {display: none;}
     }
 }
 
-@media screen and (max-width:765px) {
+@media screen and (max-width:800px) {
     ul.topnav.responsive {position: relative;}
     ul.topnav.responsive li.icon {
         position: absolute;
@@ -131,10 +132,10 @@ ul.topnav li.icon {display: none;}
         display: block;
         text-align: left;
     }
-    
+
     ul.topnav li.loginright {
-    float:left;
-}
+        float:left;
+    }
 }
 
 
@@ -143,7 +144,7 @@ ul.topnav li.icon {display: none;}
 .content {
     max-width: 80%;
     margin-top: 5%;
-        margin-bottom: 5%;
+    margin-bottom: 5%;
     margin-left: auto;
     margin-right: auto;
     padding: auto;
@@ -178,6 +179,11 @@ ul.topnav li.icon {display: none;}
     margin-right: auto;
 }
 
+.imglogo {
+    max-width: 100%;
+    min-width: 50px;
+}
+
 h3 {
     margin-bottom: 1px;
 }
@@ -195,8 +201,19 @@ h3 {
         margin-right: auto;
     }
     
+    .tbl_list_emprunt {
+    width: 250px;
+    display:flex;
+    flex-direction: column;
+}
+
     .content {
         font-size: 12px;
+    }
+
+    .tbl_list_emprunt {
+
+
     }
 }
 
@@ -213,4 +230,19 @@ footer {
 
 a {
     color: #FFBC10;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+.tbl_list_emprunt_titre {
+    width: 450px;
+
+}
+
+.tbl_list_emprunt {
+    width: 250px;
+
+
 }

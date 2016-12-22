@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,8 +26,11 @@
             <ul class="topnav" id="navCompte">
                 {% if is_granted("ROLE_USER") %}
                     <li><a href="/profile">Mon profil</a></li>
-                    <li><a href="/mes-reservations">Mes réservations</a></li>
-                    <li><a href="/mes-emprunts">Mes emprunts en cours</a></li>
+                        {% if not is_granted("ROLE_ADMIN") %}
+                        <li><a href="/mes-reservations">Mes réservations</a></li>
+                        <li><a href="/mes-emprunts">Mes emprunts en cours</a></li>
+                        {% else %}
+                        {% endif %}
                     <li class="icon">
                         <a href="javascript:void(0);" onclick="functionCompte()">&#9921;</a>
                     </li>{% else %}
@@ -36,6 +38,7 @@
                 {% if is_granted("ROLE_ADMIN") %}
                     <li><a href="/liste-reservations">Liste des réservations</a></li>
                     <li><a href="/liste-emprunts">Liste emprunts</a></li>
+                    <li><a href="/historique">Historique</a></li>
                     {% else %}
                     {% endif %}
             </ul>

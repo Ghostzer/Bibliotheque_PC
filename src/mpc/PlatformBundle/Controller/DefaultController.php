@@ -9,6 +9,7 @@ use mpc\PlatformBundle\Entity\Emprunt;
 use mpc\PlatformBundle\Entity\Utilisateurs;
 use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use mpc\PlatformBundle\Entity\Historique;
 
 class DefaultController extends Controller {
 
@@ -23,8 +24,9 @@ class DefaultController extends Controller {
         $bds = $em->getRepository('mpcPlatformBundle:Bd')->findBy([], ['date' => 'DESC']); //trie par date
         $livres = $em->getRepository('mpcPlatformBundle:Livre')->findBy([], ['date' => 'DESC']); //trie par date
         $cds = $em->getRepository('mpcPlatformBundle:Cd')->findBy([], ['date' => 'DESC']); //trie par date
+        $resas = $em->getRepository('mpcPlatformBundle:Reservation')->findAll();
 
-        return $this->render('mpcPlatformBundle:Default:nouveautes.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
+        return $this->render('mpcPlatformBundle:Default:nouveautes.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds, 'resas' => $resas
         ));
     }
 
@@ -135,6 +137,16 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $delemprunt = $em->getRepository('mpcPlatformBundle:Emprunt')->findOneBy(array('id' => $id_select));
+
+        $ajoutHistorique = new Historique;
+
+        $ajoutHistorique->setOuvrageId($delemprunt->getOuvrage());
+        $ajoutHistorique->setDateEmprunt($delemprunt->getDateEmprunt());
+        $ajoutHistorique->setUtilisateurId($delemprunt->getUtilisateur());
+        $ajoutHistorique->setDateRetour($delemprunt->getDateRetour());
+
+        $em->persist($ajoutHistorique);
+
         $em->remove($delemprunt);
 
         $em->flush();
@@ -167,16 +179,27 @@ class DefaultController extends Controller {
         return $this->render('mpcPlatformBundle:Default:allevents.html.twig', array('events' => $events
         ));
     }
-    
-        public function catalogueAction() {
+
+    public function catalogueAction() {
         $em = $this->getDoctrine()->getManager();
+
 
         $bds = $em->getRepository('mpcPlatformBundle:Bd')->findAll();
         $livres = $em->getRepository('mpcPlatformBundle:Livre')->findAll();
         $cds = $em->getRepository('mpcPlatformBundle:Cd')->findAll();
+        $resas = $em->getRepository('mpcPlatformBundle:Reservation')->findAll();
 
-        return $this->render('mpcPlatformBundle:Default:catalogue.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds,
+        return $this->render('mpcPlatformBundle:Default:catalogue.html.twig', array('bds' => $bds, 'livres' => $livres, 'cds' => $cds, 'resas' => $resas
         ));
     }
-    
+
+    public function historiqueAction() {
+        $em = $this->getDoctrine()->getManager();
+        $historiques = $em->getRepository('mpcPlatformBundle:Historique')->findAll();
+        //dump($historiques);
+        //return new  \Symfony\Component\HttpFoundation\Response();
+        return $this->render('mpcPlatformBundle:Default:historique.html.twig', array('historiques' => $historiques
+        ));
+    }
+
 }
