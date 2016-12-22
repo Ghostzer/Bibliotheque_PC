@@ -1,4 +1,7 @@
-afpaeval
-========
+This is a project with Symfony for library with booking and borrowing...
 
-A Symfony project created on December 13, 2016, 9:43 am.
+Git clone this repo
+
+* Go to /db directory
+* Create database "mpc" and import mpc.sql file
+* Install dependencies : composer install and configure your parameters
