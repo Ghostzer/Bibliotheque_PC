@@ -5,7 +5,7 @@
             <url>src/mpc/PlatformBundle/Resources/views/Default/index.html.twig</url>
             <bookmark id="1">
                 <name/>
-                <line>50</line>
+                <line>37</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,10 +13,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/rico/Bureau/afpaeval/web/css/style.css</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/ajout_reservation_ok.html.twig</file>
+            <file>file:/home/rico/Bureau/afpaeval/app/Resources/views/base.html.twig</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/config/routing.yml</file>
             <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Controller/DefaultController.php</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/ajout_emprunt_ok.html.twig</file>
-            <file>file:/home/rico/Bureau/afpaeval/app/Resources/views/ouvrage/show.html.twig</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Entity/Historique.php</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Entity/Emprunt.php</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Entity/Ouvrage.php</file>
         </group>
     </open-files>
 </project-private>
