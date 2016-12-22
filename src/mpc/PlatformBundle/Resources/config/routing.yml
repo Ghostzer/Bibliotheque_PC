@@ -41,3 +41,11 @@ all_evenements:
 del_reservation:
     path:    /del-reservation
     defaults: { _controller: mpcPlatformBundle:Default:delReservation }
+    
+del_emprunt:
+    path:    /del-emprunt
+    defaults: { _controller: mpcPlatformBundle:Default:delEmprunt }
+    
+catalogue:
+    path:    /catalogue
+    defaults: { _controller: mpcPlatformBundle:Default:catalogue }

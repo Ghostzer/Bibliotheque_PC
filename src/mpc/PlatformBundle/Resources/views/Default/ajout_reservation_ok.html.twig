@@ -3,8 +3,9 @@
 {% block body %}
     <h4>Confirmation</h4>
     <div class="confirm">
-        <p>Votre réservation a bien été prise en compte. Vous pouvez retrouver vos réservations sur la <a href="/mes-reservations"> page dédiée</a>.
-            </p>
+        <p>Votre réservation a bien été prise en compte. Vous pouvez retrouver vos réservations sur votre page dédiée.</p>
     </div>
-    <p> <a href="/">Retour à l'accueil</a></p>
+    <p> <a href="/mes-reservations" >Voir mes réservations</a></p>
+    <a href="/" onclick="window.history.go(-1); return false;"> Retour en arrière </a>
+    <p> <a href="/" >Retour à l'accueil</a></p>
 {% endblock %}

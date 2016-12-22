@@ -5,7 +5,7 @@
             <url>src/mpc/PlatformBundle/Resources/views/Default/index.html.twig</url>
             <bookmark id="1">
                 <name/>
-                <line>35</line>
+                <line>37</line>
                 <key/>
             </bookmark>
         </file>
@@ -14,13 +14,12 @@
         <group>
             <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/del_reservation_ok.html.twig</file>
             <file>file:/home/rico/Bureau/afpaeval/web/css/style.css</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/liste_reservations.html.twig</file>
             <file>file:/home/rico/Bureau/afpaeval/app/Resources/views/base.html.twig</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Controller/DefaultController.php</file>
             <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/config/routing.yml</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/mes_reservations.html.twig</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/index.html.twig</file>
-            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Resources/views/Default/nouveautes.html.twig</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Controller/DefaultController.php</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Entity/Historique.php</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Entity/Emprunt.php</file>
+            <file>file:/home/rico/Bureau/afpaeval/src/mpc/PlatformBundle/Entity/Ouvrage.php</file>
         </group>
     </open-files>
 </project-private>

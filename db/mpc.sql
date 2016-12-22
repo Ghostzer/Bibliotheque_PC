@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2016 at 04:47 PM
+-- Generation Time: Dec 22, 2016 at 07:24 AM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -64,7 +64,7 @@ CREATE TABLE `cd` (
 --
 
 INSERT INTO `cd` (`id`, `ouvrage_id`, `artist`, `genre`, `date`, `cover`) VALUES
-(2, 3, 'Metallica', 'Trash metal', '2016-11-03', 'covers/metallica.jpg'),
+(2, 3, 'Metallica', 'Heavy metal', '2016-11-03', 'covers/metallica.jpg'),
 (3, 6, 'Nero', 'Drum and Bass', '2016-12-16', 'covers/nero.jpg'),
 (4, 10, 'Astrix', 'GOA', '2016-12-19', 'covers/astrix.jpg');
 
@@ -81,13 +81,6 @@ CREATE TABLE `emprunt` (
   `date_emprunt` date NOT NULL,
   `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `emprunt`
---
-
-INSERT INTO `emprunt` (`id`, `ouvrage_id`, `date_retour`, `date_emprunt`, `utilisateur_id`) VALUES
-(22, 1, '2017-01-03', '2016-12-19', 6);
 
 -- --------------------------------------------------------
 
@@ -107,8 +100,22 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`id`, `titre`, `detail`, `date`) VALUES
-(1, 'Porte ouverte', 'Porte ouverte de la mediathèque ! Venez nombreux !', '2017-01-19 00:00:00'),
-(2, 'Journée Comics', 'Pour les amateurs de BDs Comics venez découvrir l\'association "Comic Pour Tous" qui vous permettra de vous transformer en Super héros ou vilains !', '2017-03-01 00:00:00');
+(3, 'Porte ouverte', 'Venez découvrir notre super médiathèque ! Tout le monde est admis.', '2016-12-28 00:00:00'),
+(4, 'Devenez un super héro/vilain !', 'L\'associatoin CPT "Comics Pour Tous" viendra nous rendre visite le vendredi 3 février 2017 pour une conférence sur les BD Comics. Amateur ou curieux, n\'hésitez pas ! Conférence gratuite.', '2017-02-03 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historique`
+--
+
+CREATE TABLE `historique` (
+  `id` int(11) NOT NULL,
+  `ouvrage_id` int(11) NOT NULL,
+  `date_retour` datetime NOT NULL,
+  `date_emprunt` datetime NOT NULL,
+  `utilisateur_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -175,18 +182,6 @@ CREATE TABLE `reservation` (
   `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `reservation`
---
-
-INSERT INTO `reservation` (`id`, `date`, `ouvrage_id`, `utilisateur_id`) VALUES
-(82, '2016-12-19', 8, 6),
-(99, '2016-12-20', 8, 6),
-(100, '2016-12-21', 8, 2),
-(101, '2016-12-21', 8, 2),
-(102, '2016-12-21', 8, 2),
-(103, '2016-12-21', 8, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -215,9 +210,11 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-21 16:20:17', NULL, NULL, 'a:0:{}'),
-(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-20 14:26:42', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
-(6, NULL, NULL, 'Jérome', 'jérome', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$6zSnK18zppp2dO6e06qU8e0/yrAOcAX/NNiiu2.dhgTAdZP7fJO6q', '2016-12-20 15:50:09', NULL, NULL, 'a:0:{}');
+(2, NULL, NULL, 'add', 'add', 'add@add.add', 'add@add.add', 1, NULL, '$2y$13$fvkKqBPYNR0Z1ye4wU1WTeYGQFQGoB1VJcTBGEiUa8ONauBpbJkVm', '2016-12-21 17:41:56', NULL, NULL, 'a:0:{}'),
+(3, NULL, NULL, 'admin', 'admin', 'admin@admin.admin', 'admin@admin.admin', 1, NULL, '$2y$13$it43c46j0Rc5FbWdn9Mq0.2S/KtMqyqOeRYM8B6bu2jn9F/A1vNTe', '2016-12-21 18:14:10', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'),
+(4, NULL, NULL, 'azerty', 'azerty', 'hello@hello.hello', 'hello@hello.hello', 1, NULL, '$2y$13$2GcKXm0RwGMkCXcEmnA5Ses8iutDz8k4A3WDJsbBrGx4VguMHgeei', '2016-12-15 09:36:00', NULL, NULL, 'a:0:{}'),
+(5, NULL, NULL, 'aaa', 'aaa', 'a@a.a', 'a@a.a', 1, NULL, '$2y$13$vVI6EI9vmxPGjwbPXnIq.e56FrjStuuVR166y2TKKyLkHb9bvW8eK', '2016-12-15 09:43:56', NULL, NULL, 'a:0:{}'),
+(6, NULL, NULL, 'Jérome', 'jérome', 'test@test.test', 'test@test.test', 1, NULL, '$2y$13$6zSnK18zppp2dO6e06qU8e0/yrAOcAX/NNiiu2.dhgTAdZP7fJO6q', '2016-12-21 20:23:43', NULL, NULL, 'a:0:{}');
 
 --
 -- Indexes for dumped tables
@@ -249,6 +246,12 @@ ALTER TABLE `emprunt`
 -- Indexes for table `evenements`
 --
 ALTER TABLE `evenements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `historique`
+--
+ALTER TABLE `historique`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -299,12 +302,17 @@ ALTER TABLE `cd`
 -- AUTO_INCREMENT for table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `evenements`
 --
 ALTER TABLE `evenements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `historique`
+--
+ALTER TABLE `historique`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `livre`
 --
@@ -319,7 +327,7 @@ ALTER TABLE `ouvrage`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
