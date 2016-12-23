@@ -66,9 +66,30 @@ class OuvrageController extends Controller
     public function showAction(Ouvrage $ouvrage)
     {
         $deleteForm = $this->createDeleteForm($ouvrage);
-
+        
+         $em = $this->getDoctrine()->getManager();
+         
+        $bd = $em->getRepository('mpcPlatformBundle:Bd')->findOneBy(array('ouvrage' => $ouvrage));
+        $livre = $em->getRepository('mpcPlatformBundle:Livre')->findOneBy(array('ouvrage' => $ouvrage));
+        $cd = $em->getRepository('mpcPlatformBundle:Cd')->findOneBy(array('ouvrage' => $ouvrage));
+        
+       // $document = $bd ? $bd : $livre ? $livre : $cd;
+        $type_de_doc = $bd ? 'bd' : $livre ? 'livre' : 'cd';
+       if ($bd) {
+            //$document = $bd;
+           $auteur = $bd->getAuteur();
+        } elseif ($livre) {
+            //$document = $livre;
+            $auteur = $livre->getAuteur();
+        } else {
+            //$document = $cd;
+            $auteur = $cd->getArtist();
+        }
         return $this->render('ouvrage/show.html.twig', array(
             'ouvrage' => $ouvrage,
+           // 'doc' => $document,
+            'auteur' => $auteur,
+            'type' => $type_de_doc,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Mediathèque de Pleyber Christ{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         <div id="header">
 
             <ul class="topnav" id="navMenu">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/nouveautes">Nouveautés</a></li>
-                <li><a href="/catalogue">Catalogue</a></li>
-                <li><a href="/evenements">Evenements</a></li>
+                <li><a href="{{ path('mpc_platform_homepage') }}">Accueil</a></li>
+                <li><a href="{{ path('ouvrage_nouveautes') }}">Nouveautés</a></li>
+                <li><a href="{{ path('catalogue') }}">Catalogue</a></li>
+                <li><a href="{{ path('evenements') }}">Evenements</a></li>
                 <li class="icon">
                     <a href="javascript:void(0);" onclick="functionMenu()">&#9776;</a>
                 </li>
@@ -27,8 +27,8 @@
                 {% if is_granted("ROLE_USER") %}
                     <li><a href="/profile">Mon profil</a></li>
                         {% if not is_granted("ROLE_ADMIN") %}
-                        <li><a href="/mes-reservations">Mes réservations</a></li>
-                        <li><a href="/mes-emprunts">Mes emprunts en cours</a></li>
+                        <li><a href="{{ path('ouvrage_mesreservations') }}">Mes réservations</a></li>
+                        <li><a href="{{ path('ouvrage_mesemprunts') }}">Mes emprunts en cours</a></li>
                         {% else %}
                         {% endif %}
                     <li class="icon">
@@ -36,9 +36,9 @@
                     </li>{% else %}
                 {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
-                    <li><a href="/liste-reservations">Liste des réservations</a></li>
-                    <li><a href="/liste-emprunts">Liste emprunts</a></li>
-                    <li><a href="/historique">Historique</a></li>
+                    <li><a href="{{ path('ouvrage_listereservations') }}">Liste des réservations</a></li>
+                    <li><a href="{{ path('ouvrage_listeEmprunts') }}">Liste emprunts</a></li>
+                    <li><a href="{{ path('historique') }}">Historique</a></li>
                     {% else %}
                     {% endif %}
             </ul>
